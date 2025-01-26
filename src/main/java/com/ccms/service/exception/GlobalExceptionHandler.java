@@ -1,5 +1,8 @@
 package com.ccms.service.exception;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -75,4 +78,8 @@ public class GlobalExceptionHandler {
 		// Return the error response with a 500 Internal Server Error status
 		return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+
 }
+
+
