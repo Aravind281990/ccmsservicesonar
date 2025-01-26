@@ -195,7 +195,6 @@ public class TransactionControllerTest {
         ResponseEntity<?> response = transactionController.getHighValueExpenses(encodedUsername, limit, status, amountThreshold, page, size);
 
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
-//        assertTrue(response.getBody().toString().contains("Unexpected error"));
     }
     
     
