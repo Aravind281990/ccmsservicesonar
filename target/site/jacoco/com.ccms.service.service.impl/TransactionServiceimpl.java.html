@@ -135,7 +135,7 @@ import com.ccms.service.utilities.CreditCardFormatter;
 
 		// Retrieve the total count from the map (it will be in the &quot;totalCount&quot; field)
 <span class="fc" id="L137">		Map&lt;String, Integer&gt; countMap = countResults.getUniqueMappedResult();</span>
-<span class="pc bpc" id="L138" title="2 of 4 branches missed.">		Integer totalCount = (countMap != null &amp;&amp; countMap.containsKey(TOTAL_COUNT)) ? countMap.get(TOTAL_COUNT) : 0;</span>
+<span class="pc bpc" id="L138" title="1 of 4 branches missed.">		Integer totalCount = (countMap != null &amp;&amp; countMap.containsKey(TOTAL_COUNT)) ? countMap.get(TOTAL_COUNT) : 0;</span>
 
 		// Convert Integer to Long
 <span class="fc" id="L141">		Long total = totalCount.longValue(); // Convert to Long if necessary</span>
@@ -150,110 +150,110 @@ import com.ccms.service.utilities.CreditCardFormatter;
 			Pageable pageable) {
 
 		// Retrieve all active credit cards for the user
-<span class="nc" id="L153">		logger.info(&quot;Entering getMaxExpensesForLastMonth&quot;);</span>
+<span class="fc" id="L153">		logger.info(&quot;Entering getMaxExpensesForLastMonth&quot;);</span>
 
-<span class="nc" id="L155">		List&lt;CreditCardDetail&gt; activeCreditCards = getActiveCreditCardsForUser(username, statusFilter);</span>
+<span class="fc" id="L155">		List&lt;CreditCardDetail&gt; activeCreditCards = getActiveCreditCardsForUser(username, statusFilter);</span>
 
-<span class="nc bnc" id="L157" title="All 2 branches missed.">		if (activeCreditCards.isEmpty())</span>
-<span class="nc" id="L158">			return Page.empty(pageable);</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">		if (activeCreditCards.isEmpty())</span>
+<span class="fc" id="L158">			return Page.empty(pageable);</span>
 
-<span class="nc" id="L160">		List&lt;CreditCardTransaction&gt; cardTransactions = getTransactionsForUser(username);</span>
+<span class="fc" id="L160">		List&lt;CreditCardTransaction&gt; cardTransactions = getTransactionsForUser(username);</span>
 
-<span class="nc bnc" id="L162" title="All 2 branches missed.">		if (cardTransactions.isEmpty())</span>
+<span class="pc bpc" id="L162" title="1 of 2 branches missed.">		if (cardTransactions.isEmpty())</span>
 <span class="nc" id="L163">			return Page.empty(pageable);</span>
 
 		// Initialize a map to hold the maximum transaction amount for each card
-<span class="nc" id="L166">		Map&lt;Integer, List&lt;TransactionWithCreditCardInfo&gt;&gt; allTransactionDetails = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L166">		Map&lt;Integer, List&lt;TransactionWithCreditCardInfo&gt;&gt; allTransactionDetails = new HashMap&lt;&gt;();</span>
 
 		// Retrieve transactions for each active credit card
 
-<span class="nc bnc" id="L170" title="All 2 branches missed.">		for (CreditCardDetail creditCardDetail : activeCreditCards) {</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">		for (CreditCardDetail creditCardDetail : activeCreditCards) {</span>
 
-<span class="nc" id="L172">			List&lt;TransactionWithCreditCardInfo&gt; filteredTransactions = cardTransactions.stream()</span>
-<span class="nc bnc" id="L173" title="All 2 branches missed.">					.filter(transaction -&gt; transaction.getCreditCardId() == creditCardDetail.getCreditCardId())</span>
-<span class="nc" id="L174">					.flatMap(transaction -&gt; transaction.getTransactions().stream())</span>
-<span class="nc" id="L175">					.map(transaction -&gt; new TransactionWithCreditCardInfo(creditCardDetail.getCreditCardNumber(),</span>
+<span class="fc" id="L172">			List&lt;TransactionWithCreditCardInfo&gt; filteredTransactions = cardTransactions.stream()</span>
+<span class="pc bpc" id="L173" title="1 of 2 branches missed.">					.filter(transaction -&gt; transaction.getCreditCardId() == creditCardDetail.getCreditCardId())</span>
+<span class="fc" id="L174">					.flatMap(transaction -&gt; transaction.getTransactions().stream())</span>
+<span class="fc" id="L175">					.map(transaction -&gt; new TransactionWithCreditCardInfo(creditCardDetail.getCreditCardNumber(),</span>
 							transaction))
-<span class="nc" id="L177">					.collect(Collectors.toList());</span>
+<span class="fc" id="L177">					.collect(Collectors.toList());</span>
 
-<span class="nc bnc" id="L179" title="All 2 branches missed.">			if (!filteredTransactions.isEmpty()) {</span>
-<span class="nc" id="L180">				allTransactionDetails.put(creditCardDetail.getCreditCardId(), filteredTransactions);</span>
+<span class="pc bpc" id="L179" title="1 of 2 branches missed.">			if (!filteredTransactions.isEmpty()) {</span>
+<span class="fc" id="L180">				allTransactionDetails.put(creditCardDetail.getCreditCardId(), filteredTransactions);</span>
 			}
-<span class="nc" id="L182">		}</span>
+<span class="fc" id="L182">		}</span>
 
 		// List to store the results as specified in the required format
-<span class="nc" id="L185">		List&lt;Map&lt;String, Object&gt;&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L185">		List&lt;Map&lt;String, Object&gt;&gt; result = new ArrayList&lt;&gt;();</span>
 
 		// Calculate the date range for the last month
-<span class="nc" id="L188">		LocalDate now = LocalDate.now();</span>
-<span class="nc" id="L189">		LocalDate startOfLastMonth = now.minusMonths(1).withDayOfMonth(1);</span>
-<span class="nc" id="L190">		LocalDate endOfLastMonth = now.minusMonths(1).withDayOfMonth(now.minusMonths(1).lengthOfMonth());</span>
+<span class="fc" id="L188">		LocalDate now = LocalDate.now();</span>
+<span class="fc" id="L189">		LocalDate startOfLastMonth = now.minusMonths(1).withDayOfMonth(1);</span>
+<span class="fc" id="L190">		LocalDate endOfLastMonth = now.minusMonths(1).withDayOfMonth(now.minusMonths(1).lengthOfMonth());</span>
 
-<span class="nc" id="L192">		logger.debug(&quot;Date range: &quot; + startOfLastMonth + &quot; to &quot; + endOfLastMonth);</span>
+<span class="fc" id="L192">		logger.debug(&quot;Date range: &quot; + startOfLastMonth + &quot; to &quot; + endOfLastMonth);</span>
 
 		// DateTimeFormatter to extract month name
-<span class="nc" id="L195">		DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern(&quot;MMM&quot;);</span>
+<span class="fc" id="L195">		DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern(&quot;MMM&quot;);</span>
 
 		// Iterate through each card's transactions to find the max transaction amount
-<span class="nc bnc" id="L198" title="All 2 branches missed.">		for (Map.Entry&lt;Integer, List&lt;TransactionWithCreditCardInfo&gt;&gt; entry : allTransactionDetails.entrySet()) {</span>
+<span class="fc bfc" id="L198" title="All 2 branches covered.">		for (Map.Entry&lt;Integer, List&lt;TransactionWithCreditCardInfo&gt;&gt; entry : allTransactionDetails.entrySet()) {</span>
 
-<span class="nc" id="L200">			List&lt;TransactionWithCreditCardInfo&gt; transactions = entry.getValue();</span>
+<span class="fc" id="L200">			List&lt;TransactionWithCreditCardInfo&gt; transactions = entry.getValue();</span>
 
-<span class="nc" id="L202">			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;M/d/yyyy&quot;);</span>
+<span class="fc" id="L202">			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;M/d/yyyy&quot;);</span>
 
 			// Filter transactions within the date range
-<span class="nc" id="L205">			List&lt;TransactionWithCreditCardInfo&gt; maxExpenseTransactions = transactions.stream().filter(t -&gt; {</span>
-<span class="nc" id="L206">				LocalDate transactionDate = LocalDate.parse(t.getTransactionDetail().getTransactionDate(), formatter);</span>
-<span class="nc bnc" id="L207" title="All 4 branches missed.">				return (transactionDate.isEqual(startOfLastMonth) || transactionDate.isAfter(startOfLastMonth))</span>
-<span class="nc bnc" id="L208" title="All 4 branches missed.">						&amp;&amp; (transactionDate.isEqual(endOfLastMonth) || transactionDate.isBefore(endOfLastMonth));</span>
-<span class="nc" id="L209">			}).collect(Collectors.toList());</span>
+<span class="fc" id="L205">			List&lt;TransactionWithCreditCardInfo&gt; maxExpenseTransactions = transactions.stream().filter(t -&gt; {</span>
+<span class="fc" id="L206">				LocalDate transactionDate = LocalDate.parse(t.getTransactionDetail().getTransactionDate(), formatter);</span>
+<span class="pc bpc" id="L207" title="2 of 4 branches missed.">				return (transactionDate.isEqual(startOfLastMonth) || transactionDate.isAfter(startOfLastMonth))</span>
+<span class="pc bpc" id="L208" title="2 of 4 branches missed.">						&amp;&amp; (transactionDate.isEqual(endOfLastMonth) || transactionDate.isBefore(endOfLastMonth));</span>
+<span class="fc" id="L209">			}).collect(Collectors.toList());</span>
 
 			// Calculate the maximum transaction amount for the last month
-<span class="nc bnc" id="L212" title="All 2 branches missed.">			if (!maxExpenseTransactions.isEmpty()) {</span>
-<span class="nc" id="L213">				double maxTransactionAmount = maxExpenseTransactions.stream()</span>
-<span class="nc" id="L214">						.mapToDouble(t -&gt; t.getTransactionDetail().getTransactionAmount()).max().orElse(0.0);</span>
+<span class="pc bpc" id="L212" title="1 of 2 branches missed.">			if (!maxExpenseTransactions.isEmpty()) {</span>
+<span class="fc" id="L213">				double maxTransactionAmount = maxExpenseTransactions.stream()</span>
+<span class="fc" id="L214">						.mapToDouble(t -&gt; t.getTransactionDetail().getTransactionAmount()).max().orElse(0.0);</span>
 
-<span class="nc" id="L216">				String month = startOfLastMonth.format(monthFormatter).toUpperCase();</span>
+<span class="fc" id="L216">				String month = startOfLastMonth.format(monthFormatter).toUpperCase();</span>
 
-<span class="nc" id="L218">				Map&lt;String, Object&gt; expenseDetails = new LinkedHashMap&lt;&gt;();</span>
+<span class="fc" id="L218">				Map&lt;String, Object&gt; expenseDetails = new LinkedHashMap&lt;&gt;();</span>
 
 				try {
-<span class="nc" id="L221">					String decryptedCreditCardNumber = cardEnDecryption</span>
-<span class="nc" id="L222">							.decrypt(entry.getValue().get(0).getCreditCardNumber());</span>
+<span class="fc" id="L221">					String decryptedCreditCardNumber = cardEnDecryption</span>
+<span class="fc" id="L222">							.decrypt(entry.getValue().get(0).getCreditCardNumber());</span>
 
-<span class="nc" id="L224">					entry.getValue().get(0).setCreditCardNumber(decryptedCreditCardNumber);</span>
+<span class="fc" id="L224">					entry.getValue().get(0).setCreditCardNumber(decryptedCreditCardNumber);</span>
 
-<span class="nc" id="L226">					String formattedCreditCardNumber = cardFormatter</span>
-<span class="nc" id="L227">							.maskCreditCardNumber(entry.getValue().get(0).getCreditCardNumber());</span>
+<span class="fc" id="L226">					String formattedCreditCardNumber = cardFormatter</span>
+<span class="fc" id="L227">							.maskCreditCardNumber(entry.getValue().get(0).getCreditCardNumber());</span>
 
-<span class="nc" id="L229">					expenseDetails.put(&quot;credit_card&quot;, formattedCreditCardNumber);</span>
-<span class="nc" id="L230">					expenseDetails.put(&quot;month&quot;, month);</span>
-<span class="nc" id="L231">					expenseDetails.put(&quot;amount&quot;, maxTransactionAmount);</span>
+<span class="fc" id="L229">					expenseDetails.put(&quot;credit_card&quot;, formattedCreditCardNumber);</span>
+<span class="fc" id="L230">					expenseDetails.put(&quot;month&quot;, month);</span>
+<span class="fc" id="L231">					expenseDetails.put(&quot;amount&quot;, maxTransactionAmount);</span>
 
-<span class="nc" id="L233">					result.add(expenseDetails);</span>
+<span class="fc" id="L233">					result.add(expenseDetails);</span>
 
 <span class="nc" id="L235">				} catch (Exception e) {</span>
 
 <span class="nc" id="L237">					logger.error(&quot;Error decrypting credit card number&quot;, e);</span>
 <span class="nc" id="L238">					continue;</span>
 
-<span class="nc" id="L240">				}</span>
+<span class="fc" id="L240">				}</span>
 
 			}
-<span class="nc" id="L243">		}</span>
+<span class="fc" id="L243">		}</span>
 
 		// Calculate the total number of results
-<span class="nc" id="L246">		long total = result.size();</span>
+<span class="fc" id="L246">		long total = result.size();</span>
 
 		// Apply pagination by skipping and limiting based on the Pageable object
-<span class="nc" id="L249">		int start = (int) pageable.getOffset();</span>
-<span class="nc" id="L250">		int end = Math.min((start + pageable.getPageSize()), result.size());</span>
+<span class="fc" id="L249">		int start = (int) pageable.getOffset();</span>
+<span class="fc" id="L250">		int end = Math.min((start + pageable.getPageSize()), result.size());</span>
 
 		// Get the sublist for the current page
-<span class="nc" id="L253">		List&lt;Map&lt;String, Object&gt;&gt; pagedResults = result.subList(start, end);</span>
+<span class="fc" id="L253">		List&lt;Map&lt;String, Object&gt;&gt; pagedResults = result.subList(start, end);</span>
 
 		// Return the paginated Page object
-<span class="nc" id="L256">		return new PageImpl&lt;&gt;(pagedResults, pageable, total);</span>
+<span class="fc" id="L256">		return new PageImpl&lt;&gt;(pagedResults, pageable, total);</span>
 	}
 
 	// HIGH Value expenses more than the threshold amount (xxxxx)
@@ -262,83 +262,83 @@ import com.ccms.service.utilities.CreditCardFormatter;
 			String statusFilter, double amountThreshold, Pageable pageable) {
 
 		// Retrieve all active credit cards for the user
-<span class="nc" id="L265">		logger.info(&quot;Entering getHighValueExpensesForUser&quot;);</span>
+<span class="fc" id="L265">		logger.info(&quot;Entering getHighValueExpensesForUser&quot;);</span>
 
-<span class="nc" id="L267">		List&lt;CreditCardDetail&gt; activeCreditCards = getActiveCreditCardsForUser(username, statusFilter);</span>
+<span class="fc" id="L267">		List&lt;CreditCardDetail&gt; activeCreditCards = getActiveCreditCardsForUser(username, statusFilter);</span>
 
-<span class="nc bnc" id="L269" title="All 2 branches missed.">		if (activeCreditCards.isEmpty())</span>
-<span class="nc" id="L270">			return Collections.emptyMap();</span>
+<span class="fc bfc" id="L269" title="All 2 branches covered.">		if (activeCreditCards.isEmpty())</span>
+<span class="fc" id="L270">			return Collections.emptyMap();</span>
 
-<span class="nc" id="L272">		List&lt;CreditCardTransaction&gt; cardTransactions = getTransactionsForUser(username);</span>
+<span class="fc" id="L272">		List&lt;CreditCardTransaction&gt; cardTransactions = getTransactionsForUser(username);</span>
 
-<span class="nc bnc" id="L274" title="All 2 branches missed.">		if (cardTransactions.isEmpty())</span>
+<span class="pc bpc" id="L274" title="1 of 2 branches missed.">		if (cardTransactions.isEmpty())</span>
 <span class="nc" id="L275">			return Collections.emptyMap();</span>
 
 		// Retrieve transactions for each active credit card
 
-<span class="nc" id="L279">		Map&lt;String, Page&lt;Map&lt;String, String&gt;&gt;&gt; allTransactionDetails = new LinkedHashMap();</span>
+<span class="fc" id="L279">		Map&lt;String, Page&lt;Map&lt;String, String&gt;&gt;&gt; allTransactionDetails = new LinkedHashMap();</span>
 
-<span class="nc bnc" id="L281" title="All 2 branches missed.">		for (CreditCardDetail creditCardDetail : activeCreditCards) {</span>
+<span class="fc bfc" id="L281" title="All 2 branches covered.">		for (CreditCardDetail creditCardDetail : activeCreditCards) {</span>
 
 			// Filter the transactions for this particular credit card
 
-<span class="nc" id="L285">			List&lt;Map&lt;String, String&gt;&gt; filteredTransactions = cardTransactions.stream()</span>
-<span class="nc bnc" id="L286" title="All 2 branches missed.">					.filter(transaction -&gt; transaction.getCreditCardId() == creditCardDetail.getCreditCardId())</span>
-<span class="nc" id="L287">					.flatMap(transaction -&gt; transaction.getTransactions().stream())</span>
-<span class="nc bnc" id="L288" title="All 2 branches missed.">					.filter(transaction -&gt; transaction.getTransactionAmount() &gt; amountThreshold).map(</span>
-<span class="nc" id="L289">							transaction -&gt; new TransactionWithCreditCardInfo(creditCardDetail.getCreditCardNumber(),</span>
+<span class="fc" id="L285">			List&lt;Map&lt;String, String&gt;&gt; filteredTransactions = cardTransactions.stream()</span>
+<span class="pc bpc" id="L286" title="1 of 2 branches missed.">					.filter(transaction -&gt; transaction.getCreditCardId() == creditCardDetail.getCreditCardId())</span>
+<span class="fc" id="L287">					.flatMap(transaction -&gt; transaction.getTransactions().stream())</span>
+<span class="fc bfc" id="L288" title="All 2 branches covered.">					.filter(transaction -&gt; transaction.getTransactionAmount() &gt; amountThreshold).map(</span>
+<span class="fc" id="L289">							transaction -&gt; new TransactionWithCreditCardInfo(creditCardDetail.getCreditCardNumber(),</span>
 									transaction))
-<span class="nc" id="L291">					.sorted(Comparator.comparing((TransactionWithCreditCardInfo transaction) -&gt; transaction</span>
-<span class="nc" id="L292">							.getTransactionDetail().getTransactionDate()).reversed())</span>
-<span class="nc" id="L293">					.map(transaction -&gt; {</span>
+<span class="fc" id="L291">					.sorted(Comparator.comparing((TransactionWithCreditCardInfo transaction) -&gt; transaction</span>
+<span class="fc" id="L292">							.getTransactionDetail().getTransactionDate()).reversed())</span>
+<span class="fc" id="L293">					.map(transaction -&gt; {</span>
 						// Create a map with &quot;transactionDetail&quot; key and the transaction detail data as
 						// strings
-<span class="nc" id="L296">						Map&lt;String, String&gt; transactionMap = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L297">						TransactionDetail detail = transaction.getTransactionDetail();</span>
-<span class="nc" id="L298">						transactionMap.put(&quot;transactionId&quot;, String.valueOf(detail.getTransactionId()));</span>
-<span class="nc" id="L299">						transactionMap.put(&quot;transactiondate&quot;, String.valueOf(detail.getTransactionDate()));</span>
-<span class="nc" id="L300">						transactionMap.put(&quot;transactiontime&quot;, String.valueOf(detail.getTransactionTime()));</span>
-<span class="nc" id="L301">						transactionMap.put(&quot;transactiontype&quot;, detail.getTransactionType());</span>
-<span class="nc" id="L302">						transactionMap.put(&quot;transactionamount&quot;, String.valueOf(detail.getTransactionAmount()));</span>
-<span class="nc" id="L303">						transactionMap.put(&quot;transactiondescription&quot;, detail.getTransactionDesc());</span>
-<span class="nc" id="L304">						return transactionMap;</span>
-<span class="nc" id="L305">					}).limit(limit).collect(Collectors.toList());</span>
+<span class="fc" id="L296">						Map&lt;String, String&gt; transactionMap = new LinkedHashMap&lt;&gt;();</span>
+<span class="fc" id="L297">						TransactionDetail detail = transaction.getTransactionDetail();</span>
+<span class="fc" id="L298">						transactionMap.put(&quot;transactionId&quot;, String.valueOf(detail.getTransactionId()));</span>
+<span class="fc" id="L299">						transactionMap.put(&quot;transactiondate&quot;, String.valueOf(detail.getTransactionDate()));</span>
+<span class="fc" id="L300">						transactionMap.put(&quot;transactiontime&quot;, String.valueOf(detail.getTransactionTime()));</span>
+<span class="fc" id="L301">						transactionMap.put(&quot;transactiontype&quot;, detail.getTransactionType());</span>
+<span class="fc" id="L302">						transactionMap.put(&quot;transactionamount&quot;, String.valueOf(detail.getTransactionAmount()));</span>
+<span class="fc" id="L303">						transactionMap.put(&quot;transactiondescription&quot;, detail.getTransactionDesc());</span>
+<span class="fc" id="L304">						return transactionMap;</span>
+<span class="fc" id="L305">					}).limit(limit).collect(Collectors.toList());</span>
 
-<span class="nc bnc" id="L307" title="All 2 branches missed.">			if (!filteredTransactions.isEmpty()) {</span>
+<span class="pc bpc" id="L307" title="1 of 2 branches missed.">			if (!filteredTransactions.isEmpty()) {</span>
 
 				try {
-<span class="nc" id="L310">					String decryptedCreditCardNumber = cardEnDecryption.decrypt(creditCardDetail.getCreditCardNumber());</span>
+<span class="fc" id="L310">					String decryptedCreditCardNumber = cardEnDecryption.decrypt(creditCardDetail.getCreditCardNumber());</span>
 
-<span class="nc" id="L312">					String formattedCreditCardNumber = cardFormatter.maskCreditCardNumber(decryptedCreditCardNumber);</span>
+<span class="fc" id="L312">					String formattedCreditCardNumber = cardFormatter.maskCreditCardNumber(decryptedCreditCardNumber);</span>
 
 					// Calculate the start and end index for the current page
-<span class="nc" id="L315">					int start = (int) pageable.getOffset();</span>
-<span class="nc" id="L316">					int end = Math.min((start + pageable.getPageSize()), filteredTransactions.size());</span>
+<span class="fc" id="L315">					int start = (int) pageable.getOffset();</span>
+<span class="fc" id="L316">					int end = Math.min((start + pageable.getPageSize()), filteredTransactions.size());</span>
 
 					// Get the current page transactions
-<span class="nc" id="L319">					List&lt;Map&lt;String, String&gt;&gt; pageContent = filteredTransactions.subList(start, end);</span>
+<span class="fc" id="L319">					List&lt;Map&lt;String, String&gt;&gt; pageContent = filteredTransactions.subList(start, end);</span>
 
 					// Create a Page object with the paginated transactions
-<span class="nc" id="L322">					Page&lt;Map&lt;String, String&gt;&gt; page = new PageImpl&lt;&gt;(pageContent, pageable, filteredTransactions.size());</span>
+<span class="fc" id="L322">					Page&lt;Map&lt;String, String&gt;&gt; page = new PageImpl&lt;&gt;(pageContent, pageable, filteredTransactions.size());</span>
 
 					// Put the page in the result map with the formatted credit card number as the
 					// key
-<span class="nc" id="L326">					allTransactionDetails.put(formattedCreditCardNumber, page);</span>
+<span class="fc" id="L326">					allTransactionDetails.put(formattedCreditCardNumber, page);</span>
 
 <span class="nc" id="L328">				} catch (Exception e) {</span>
 
 <span class="nc" id="L330">					logger.error(&quot;Error decrypting credit card number for user: &quot; + username, e);</span>
 <span class="nc" id="L331">					continue;</span>
-<span class="nc" id="L332">				}</span>
+<span class="fc" id="L332">				}</span>
 
 			}
-<span class="nc" id="L335">		}</span>
+<span class="fc" id="L335">		}</span>
 
-<span class="nc bnc" id="L337" title="All 2 branches missed.">		if (allTransactionDetails.isEmpty()) {</span>
+<span class="pc bpc" id="L337" title="1 of 2 branches missed.">		if (allTransactionDetails.isEmpty()) {</span>
 <span class="nc" id="L338">			logger.info(&quot;No high-value transactions found for any card.&quot;);</span>
 		}
 
-<span class="nc" id="L341">		return allTransactionDetails;</span>
+<span class="fc" id="L341">		return allTransactionDetails;</span>
 
 	}
 
@@ -349,76 +349,76 @@ import com.ccms.service.utilities.CreditCardFormatter;
 
 		// Retrieve all active credit cards for the user
 
-<span class="nc" id="L352">		logger.info(&quot;Entering getLastXTransactionsForUser&quot;);</span>
+<span class="fc" id="L352">		logger.info(&quot;Entering getLastXTransactionsForUser&quot;);</span>
 
-<span class="nc" id="L354">		List&lt;CreditCardDetail&gt; activeCreditCards = getActiveCreditCardsForUser(username, statusFilter);</span>
+<span class="fc" id="L354">		List&lt;CreditCardDetail&gt; activeCreditCards = getActiveCreditCardsForUser(username, statusFilter);</span>
 
-<span class="nc bnc" id="L356" title="All 2 branches missed.">		if (activeCreditCards.isEmpty())</span>
-<span class="nc" id="L357">			return Collections.emptyMap();</span>
+<span class="fc bfc" id="L356" title="All 2 branches covered.">		if (activeCreditCards.isEmpty())</span>
+<span class="fc" id="L357">			return Collections.emptyMap();</span>
 
-<span class="nc" id="L359">		List&lt;CreditCardTransaction&gt; cardTransactions = getTransactionsForUser(username);</span>
+<span class="fc" id="L359">		List&lt;CreditCardTransaction&gt; cardTransactions = getTransactionsForUser(username);</span>
 
-<span class="nc bnc" id="L361" title="All 2 branches missed.">		if (cardTransactions.isEmpty())</span>
+<span class="pc bpc" id="L361" title="1 of 2 branches missed.">		if (cardTransactions.isEmpty())</span>
 <span class="nc" id="L362">			return Collections.emptyMap();</span>
 
 		// Retrieve transactions for each active credit card
 
-<span class="nc" id="L366">		Map&lt;Integer, List&lt;TransactionDetail&gt;&gt; allTransactionDetails = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L366">		Map&lt;Integer, List&lt;TransactionDetail&gt;&gt; allTransactionDetails = new HashMap&lt;&gt;();</span>
 
-<span class="nc bnc" id="L368" title="All 2 branches missed.">		for (CreditCardDetail creditCardDetail : activeCreditCards) {</span>
+<span class="fc bfc" id="L368" title="All 2 branches covered.">		for (CreditCardDetail creditCardDetail : activeCreditCards) {</span>
 
-<span class="nc" id="L370">			List&lt;TransactionDetail&gt; filteredTransactions = cardTransactions.stream()</span>
-<span class="nc bnc" id="L371" title="All 2 branches missed.">					.filter(transaction -&gt; transaction.getCreditCardId() == creditCardDetail.getCreditCardId())</span>
-<span class="nc" id="L372">					.flatMap(transaction -&gt; transaction.getTransactions().stream())</span>
-<span class="nc" id="L373">					.sorted(Comparator.comparing(TransactionDetail::getTransactionDate).reversed()) // Sort before</span>
+<span class="fc" id="L370">			List&lt;TransactionDetail&gt; filteredTransactions = cardTransactions.stream()</span>
+<span class="fc bfc" id="L371" title="All 2 branches covered.">					.filter(transaction -&gt; transaction.getCreditCardId() == creditCardDetail.getCreditCardId())</span>
+<span class="fc" id="L372">					.flatMap(transaction -&gt; transaction.getTransactions().stream())</span>
+<span class="fc" id="L373">					.sorted(Comparator.comparing(TransactionDetail::getTransactionDate).reversed()) // Sort before</span>
 																									// pagination
-<span class="nc" id="L375">					.collect(Collectors.toList());</span>
+<span class="fc" id="L375">					.collect(Collectors.toList());</span>
 
-<span class="nc bnc" id="L377" title="All 2 branches missed.">			if (!filteredTransactions.isEmpty()) {</span>
-<span class="nc" id="L378">				allTransactionDetails.put(creditCardDetail.getCreditCardId(), filteredTransactions);</span>
+<span class="pc bpc" id="L377" title="1 of 2 branches missed.">			if (!filteredTransactions.isEmpty()) {</span>
+<span class="fc" id="L378">				allTransactionDetails.put(creditCardDetail.getCreditCardId(), filteredTransactions);</span>
 			}
 
-<span class="nc" id="L381">		}</span>
+<span class="fc" id="L381">		}</span>
 
 		// Now limit the transactions to the last X for each credit card ID
 
-<span class="nc" id="L385">		Map&lt;Integer, Page&lt;TransactionDetail&gt;&gt; paginatedTransactionDetails = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L385">		Map&lt;Integer, Page&lt;TransactionDetail&gt;&gt; paginatedTransactionDetails = new HashMap&lt;&gt;();</span>
 
-<span class="nc bnc" id="L387" title="All 2 branches missed.">		for (Map.Entry&lt;Integer, List&lt;TransactionDetail&gt;&gt; entry : allTransactionDetails.entrySet()) {</span>
+<span class="fc bfc" id="L387" title="All 2 branches covered.">		for (Map.Entry&lt;Integer, List&lt;TransactionDetail&gt;&gt; entry : allTransactionDetails.entrySet()) {</span>
 
-<span class="nc" id="L389">			List&lt;TransactionDetail&gt; transactions = entry.getValue();</span>
+<span class="fc" id="L389">			List&lt;TransactionDetail&gt; transactions = entry.getValue();</span>
 
 			// Sort and limit the transactions for the current credit card ID
 
-<span class="nc bnc" id="L393" title="All 2 branches missed.">			if (!transactions.isEmpty()) {</span>
+<span class="pc bpc" id="L393" title="1 of 2 branches missed.">			if (!transactions.isEmpty()) {</span>
 
-<span class="nc" id="L395">				List&lt;TransactionDetail&gt; limitedTransactions = transactions.stream().limit(limit) // Limit to the top X</span>
+<span class="fc" id="L395">				List&lt;TransactionDetail&gt; limitedTransactions = transactions.stream().limit(limit) // Limit to the top X</span>
 																									// transactions
-<span class="nc" id="L397">						.collect(Collectors.toList());</span>
+<span class="fc" id="L397">						.collect(Collectors.toList());</span>
 
 				// Apply pagination based on the Pageable object
-<span class="nc" id="L400">				int start = (int) pageable.getOffset();</span>
-<span class="nc" id="L401">				int end = Math.min((start + pageable.getPageSize()), limitedTransactions.size());</span>
+<span class="fc" id="L400">				int start = (int) pageable.getOffset();</span>
+<span class="fc" id="L401">				int end = Math.min((start + pageable.getPageSize()), limitedTransactions.size());</span>
 
 				// Prevent index out of bounds
-<span class="nc bnc" id="L404" title="All 2 branches missed.">				if (start &gt; limitedTransactions.size()) {</span>
+<span class="pc bpc" id="L404" title="1 of 2 branches missed.">				if (start &gt; limitedTransactions.size()) {</span>
 <span class="nc" id="L405">					start = limitedTransactions.size();</span>
 				}
 
-<span class="nc" id="L408">				List&lt;TransactionDetail&gt; pageContent = limitedTransactions.subList(start, end);</span>
+<span class="fc" id="L408">				List&lt;TransactionDetail&gt; pageContent = limitedTransactions.subList(start, end);</span>
 
 				// Create a Page object for the current credit card's transactions
-<span class="nc" id="L411">				Page&lt;TransactionDetail&gt; page = new PageImpl&lt;&gt;(pageContent, pageable, limitedTransactions.size());</span>
+<span class="fc" id="L411">				Page&lt;TransactionDetail&gt; page = new PageImpl&lt;&gt;(pageContent, pageable, limitedTransactions.size());</span>
 
 				// Add the limited list back to the new map
 
 				// Add the Page to the map, keyed by credit card ID
-<span class="nc" id="L416">				paginatedTransactionDetails.put(entry.getKey(), page);</span>
+<span class="fc" id="L416">				paginatedTransactionDetails.put(entry.getKey(), page);</span>
 			}
 
-<span class="nc" id="L419">		}</span>
+<span class="fc" id="L419">		}</span>
 
-<span class="nc" id="L421">		return paginatedTransactionDetails; // Return the map with paginated transactions</span>
+<span class="fc" id="L421">		return paginatedTransactionDetails; // Return the map with paginated transactions</span>
 
 	}
 
@@ -428,179 +428,181 @@ import com.ccms.service.utilities.CreditCardFormatter;
 
 		// Step 1: Retrieve active credit cards for the user
 
-<span class="nc" id="L431">		logger.info(&quot;Entering getLastXExpensesForUser&quot;);</span>
-<span class="nc" id="L432">		List&lt;CreditCardDetail&gt; activeCreditCards = getActiveCreditCardsForUser(username, statusFilter);</span>
-<span class="nc bnc" id="L433" title="All 2 branches missed.">		if (activeCreditCards.isEmpty()) {</span>
-<span class="nc" id="L434">			return Collections.emptyMap(); // No active credit cards</span>
+<span class="fc" id="L431">		logger.info(&quot;Entering getLastXExpensesForUser&quot;);</span>
+<span class="fc" id="L432">		List&lt;CreditCardDetail&gt; activeCreditCards = getActiveCreditCardsForUser(username, statusFilter);</span>
+<span class="fc bfc" id="L433" title="All 2 branches covered.">		if (activeCreditCards.isEmpty()) {</span>
+<span class="fc" id="L434">			return Collections.emptyMap(); // No active credit cards</span>
 		}
 
 		// Step 2: Retrieve all transactions for the user
 
-<span class="nc" id="L439">		List&lt;CreditCardTransaction&gt; cardTransactions = getTransactionsForUser(username);</span>
-<span class="nc bnc" id="L440" title="All 2 branches missed.">		if (cardTransactions.isEmpty()) {</span>
+<span class="fc" id="L439">		List&lt;CreditCardTransaction&gt; cardTransactions = getTransactionsForUser(username);</span>
+<span class="pc bpc" id="L440" title="1 of 2 branches missed.">		if (cardTransactions.isEmpty()) {</span>
 <span class="nc" id="L441">			return Collections.emptyMap(); // No transactions found</span>
 		}
 
 		// Step 3: Process and filter transactions for each credit card separately
 
-<span class="nc" id="L446">		List&lt;Map&lt;String, Object&gt;&gt; Maxexpense = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L446">		List&lt;Map&lt;String, Object&gt;&gt; Maxexpense = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L448">		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;M/d/yyyy&quot;);</span>
+<span class="fc" id="L448">		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;M/d/yyyy&quot;);</span>
 
-<span class="nc bnc" id="L450" title="All 2 branches missed.">		for (CreditCardDetail creditCardDetail : activeCreditCards) {</span>
+<span class="fc bfc" id="L450" title="All 2 branches covered.">		for (CreditCardDetail creditCardDetail : activeCreditCards) {</span>
 
 			// Step 3.1: Filter transactions specifically for the current credit card
-<span class="nc" id="L453">			List&lt;TransactionWithCreditCardInfo&gt; filteredTransactions = cardTransactions.stream()</span>
-<span class="nc bnc" id="L454" title="All 2 branches missed.">					.filter(transaction -&gt; transaction.getCreditCardId() == creditCardDetail.getCreditCardId()) // Ensure</span>
+<span class="fc" id="L453">			List&lt;TransactionWithCreditCardInfo&gt; filteredTransactions = cardTransactions.stream()</span>
+<span class="fc bfc" id="L454" title="All 2 branches covered.">					.filter(transaction -&gt; transaction.getCreditCardId() == creditCardDetail.getCreditCardId()) // Ensure</span>
 																												// card-specific
 																												// transactions
-<span class="nc" id="L457">					.flatMap(transaction -&gt; transaction.getTransactions().stream()) // Assuming `getTransactions()`</span>
+<span class="fc" id="L457">					.flatMap(transaction -&gt; transaction.getTransactions().stream()) // Assuming `getTransactions()`</span>
 																					// returns the transaction details
-<span class="nc" id="L459">					.sorted(Comparator.comparing(TransactionDetail::getTransactionDate).reversed()).limit(limit) // Limit</span>
+<span class="fc" id="L459">					.sorted(Comparator.comparing(TransactionDetail::getTransactionDate).reversed()).limit(limit) // Limit</span>
 																													// to
 																													// X
 																													// number
 																													// of
 																													// transactions
-<span class="nc" id="L465">					.map(transaction -&gt; new TransactionWithCreditCardInfo(creditCardDetail.getCreditCardNumber(),</span>
+<span class="fc" id="L465">					.map(transaction -&gt; new TransactionWithCreditCardInfo(creditCardDetail.getCreditCardNumber(),</span>
 							transaction))
-<span class="nc" id="L467">					.collect(Collectors.toList());</span>
+<span class="fc" id="L467">					.collect(Collectors.toList());</span>
 
-<span class="nc bnc" id="L469" title="All 2 branches missed.">			if (filteredTransactions.isEmpty()) {</span>
+<span class="pc bpc" id="L469" title="1 of 2 branches missed.">			if (filteredTransactions.isEmpty()) {</span>
 <span class="nc" id="L470">				continue; // Skip if there are no transactions for this card</span>
 			}
 
 			// Step 3.2: Paginate transactions for each credit card (e.g., limit 100 per
 			// page)
-<span class="nc" id="L475">			int start = (int) pageable.getOffset();</span>
-<span class="nc" id="L476">			int end = Math.min(start + pageable.getPageSize(), filteredTransactions.size());</span>
-<span class="nc" id="L477">			List&lt;TransactionWithCreditCardInfo&gt; paginatedTransactions = filteredTransactions.subList(start, end);</span>
+<span class="fc" id="L475">			int start = (int) pageable.getOffset();</span>
+<span class="fc" id="L476">			int end = Math.min(start + pageable.getPageSize(), filteredTransactions.size());</span>
+<span class="fc" id="L477">			List&lt;TransactionWithCreditCardInfo&gt; paginatedTransactions = filteredTransactions.subList(start, end);</span>
 
 			// Step 3.2: Map the filtered transactions to a list of maps
-<span class="nc" id="L480">			List&lt;Map&lt;String, Object&gt;&gt; transactionList = paginatedTransactions.stream().map(transaction -&gt; {</span>
-<span class="nc" id="L481">				Map&lt;String, Object&gt; transactionMap = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L482">				LocalDate transactionDate = LocalDate.parse(transaction.getTransactionDetail().getTransactionDate(),</span>
+<span class="fc" id="L480">			List&lt;Map&lt;String, Object&gt;&gt; transactionList = paginatedTransactions.stream().map(transaction -&gt; {</span>
+<span class="fc" id="L481">				Map&lt;String, Object&gt; transactionMap = new LinkedHashMap&lt;&gt;();</span>
+<span class="fc" id="L482">				LocalDate transactionDate = LocalDate.parse(transaction.getTransactionDetail().getTransactionDate(),</span>
 						formatter);
-<span class="nc" id="L484">				String month = transactionDate.getMonth().name().substring(0, 3); // Get the 3-letter month abbreviation</span>
-<span class="nc" id="L485">				transactionMap.put(&quot;month&quot;, month);</span>
-<span class="nc" id="L486">				transactionMap.put(&quot;amount&quot;, transaction.getTransactionDetail().getTransactionAmount());</span>
-<span class="nc" id="L487">				transactionMap.put(&quot;description&quot;, transaction.getTransactionDetail().getTransactionDesc());</span>
-<span class="nc" id="L488">				return transactionMap;</span>
-<span class="nc" id="L489">			}).collect(Collectors.toList());</span>
+<span class="fc" id="L484">				String month = transactionDate.getMonth().name().substring(0, 3); // Get the 3-letter month abbreviation</span>
+<span class="fc" id="L485">				transactionMap.put(&quot;month&quot;, month);</span>
+<span class="fc" id="L486">				transactionMap.put(&quot;amount&quot;, transaction.getTransactionDetail().getTransactionAmount());</span>
+<span class="fc" id="L487">				transactionMap.put(&quot;description&quot;, transaction.getTransactionDetail().getTransactionDesc());</span>
+<span class="fc" id="L488">				return transactionMap;</span>
+<span class="fc" id="L489">			}).collect(Collectors.toList());</span>
 
 			// Step 3.3: Prepare credit card data with decrypted card number and transaction
 			// details
-<span class="nc" id="L493">			Map&lt;String, Object&gt; creditCardData = new LinkedHashMap&lt;&gt;();</span>
+<span class="fc" id="L493">			Map&lt;String, Object&gt; creditCardData = new LinkedHashMap&lt;&gt;();</span>
 			try {
 				// Decrypt credit card number
-<span class="nc" id="L496">				String decryptedCreditCardNumber = cardEnDecryption.decrypt(creditCardDetail.getCreditCardNumber());</span>
-<span class="nc" id="L497">				String formattedCreditCardNumber = cardFormatter.maskCreditCardNumber(decryptedCreditCardNumber);</span>
-<span class="nc" id="L498">				creditCardData.put(&quot;credit_card&quot;, formattedCreditCardNumber);</span>
-<span class="nc" id="L499">				creditCardData.put(&quot;transactions&quot;, transactionList); // Add the transaction details for this card</span>
-<span class="nc" id="L500">				Maxexpense.add(creditCardData);</span>
+<span class="fc" id="L496">				String decryptedCreditCardNumber = cardEnDecryption.decrypt(creditCardDetail.getCreditCardNumber());</span>
+<span class="fc" id="L497">				String formattedCreditCardNumber = cardFormatter.maskCreditCardNumber(decryptedCreditCardNumber);</span>
+<span class="fc" id="L498">				creditCardData.put(&quot;credit_card&quot;, formattedCreditCardNumber);</span>
+<span class="fc" id="L499">				creditCardData.put(&quot;transactions&quot;, transactionList); // Add the transaction details for this card</span>
+<span class="fc" id="L500">				Maxexpense.add(creditCardData);</span>
 <span class="nc" id="L501">			} catch (Exception e) {</span>
 <span class="nc" id="L502">				logger.error(&quot;Error decrypting credit card number for user: &quot; + username, e);</span>
 <span class="nc" id="L503">				continue; // Skip if decryption fails</span>
-<span class="nc" id="L504">			}</span>
-<span class="nc" id="L505">		}</span>
+<span class="fc" id="L504">			}</span>
+<span class="fc" id="L505">		}</span>
 
 		// Step 4: Apply pagination to the result
-<span class="nc" id="L508">		int start = (int) pageable.getOffset();</span>
-<span class="nc" id="L509">		int end = Math.min(start + pageable.getPageSize(), Maxexpense.size());</span>
+<span class="fc" id="L508">		int start = (int) pageable.getOffset();</span>
+<span class="fc" id="L509">		int end = Math.min(start + pageable.getPageSize(), Maxexpense.size());</span>
 
 		// Prevent index out of bounds
-<span class="nc bnc" id="L512" title="All 2 branches missed.">		if (start &gt; Maxexpense.size()) {</span>
+<span class="pc bpc" id="L512" title="1 of 2 branches missed.">		if (start &gt; Maxexpense.size()) {</span>
 <span class="nc" id="L513">			start = Maxexpense.size();</span>
 		}
 
-<span class="nc" id="L516">		List&lt;Map&lt;String, Object&gt;&gt; paginatedResults = Maxexpense.subList(start, end);</span>
+<span class="fc" id="L516">		List&lt;Map&lt;String, Object&gt;&gt; paginatedResults = Maxexpense.subList(start, end);</span>
 
 		// Step 5: Prepare the final result
-<span class="nc" id="L519">		Map&lt;String, Object&gt; result = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L520">		result.put(&quot;content&quot;, paginatedResults); // The list of credit cards and their transactions for the current page</span>
-<span class="nc" id="L521">		result.put(&quot;totalElements&quot;, Maxexpense.size()); // Total number of credit cards with transactions</span>
-<span class="nc" id="L522">		result.put(&quot;totalPages&quot;, (int) Math.ceil((double) Maxexpense.size() / pageable.getPageSize())); // Total pages</span>
+<span class="fc" id="L519">		Map&lt;String, Object&gt; result = new LinkedHashMap&lt;&gt;();</span>
+<span class="fc" id="L520">		result.put(&quot;content&quot;, paginatedResults); // The list of credit cards and their transactions for the current page</span>
+<span class="fc" id="L521">		result.put(&quot;totalElements&quot;, Maxexpense.size()); // Total number of credit cards with transactions</span>
+<span class="fc" id="L522">		result.put(&quot;totalPages&quot;, (int) Math.ceil((double) Maxexpense.size() / pageable.getPageSize())); // Total pages</span>
 																										// for
 																										// pagination
-<span class="nc" id="L525">		result.put(&quot;pageable&quot;, buildPageableInfo(pageable)); // Pageable info (page size, page number, sort)</span>
+<span class="fc" id="L525">		result.put(&quot;pageable&quot;, buildPageableInfo(pageable)); // Pageable info (page size, page number, sort)</span>
 
-<span class="nc" id="L527">		return result; // Return the final result</span>
+<span class="fc" id="L527">		return result; // Return the final result</span>
 	}
 
 	// Utility method to get the active credit cards for the user
 
 	List&lt;CreditCardDetail&gt; getActiveCreditCardsForUser(String username, String statusFilter) {
-<span class="nc" id="L533">		logger.info(&quot;Entering getActiveCreditCardsForUser&quot;);</span>
-
-<span class="nc" id="L535">		List&lt;CreditCardDetail&gt; activeCreditCards = new ArrayList&lt;&gt;();</span>
-
+<span class="fc" id="L533">		logger.info(&quot;Entering getActiveCreditCardsForUser&quot;);</span>
+		
+<span class="fc" id="L535">		List&lt;CreditCardDetail&gt; activeCreditCards = new ArrayList&lt;&gt;();</span>
+		
 		try {
-<span class="nc" id="L538">			activeCreditCards = cardService.getAllCreditCardsForUser(username).getCreditcards();</span>
-<span class="nc bnc" id="L539" title="All 4 branches missed.">			if (activeCreditCards == null || activeCreditCards.isEmpty()) {</span>
-<span class="nc" id="L540">				logger.error(&quot;No active credit cards found for user: {}&quot;, username);</span>
-<span class="nc" id="L541">				throw new CreditCardNotFoundException(username);</span>
+			
+<span class="fc" id="L539">			activeCreditCards = cardService.getAllCreditCardsForUser(username).getCreditcards();</span>
+	
+<span class="pc bpc" id="L541" title="2 of 4 branches missed.">			if (activeCreditCards == null || activeCreditCards.isEmpty()) {</span>
+<span class="nc" id="L542">				logger.error(&quot;No active credit cards found for user: {}&quot;, username);</span>
+<span class="nc" id="L543">				throw new CreditCardNotFoundException(username);</span>
 			}
-<span class="nc" id="L543">		} catch (CustomerNotFoundException e) {</span>
-<span class="nc" id="L544">			logger.error(e.getMessage());</span>
-<span class="nc" id="L545">			return Collections.emptyList();</span>
-<span class="nc" id="L546">		} catch (CreditCardNotFoundException e) {</span>
-<span class="nc" id="L547">			logger.error(e.getMessage());</span>
-<span class="nc" id="L548">			return Collections.emptyList();</span>
-<span class="nc" id="L549">		} catch (DataAccessException e) {</span>
-<span class="nc" id="L550">			logger.error(&quot;Database error while retrieving creditcards&quot;, e);</span>
-<span class="nc" id="L551">			return Collections.emptyList();</span>
-<span class="nc" id="L552">		} catch (Exception e) {</span>
-<span class="nc" id="L553">			logger.error(&quot;Error retrieving credit cards for user: {}&quot;, username);</span>
-<span class="nc" id="L554">			return Collections.emptyList(); // Handle other errors</span>
-<span class="nc" id="L555">		}</span>
-<span class="nc" id="L556">		return activeCreditCards.stream().filter(card -&gt; {</span>
-<span class="nc bnc" id="L557" title="All 4 branches missed.">			switch (statusFilter.toLowerCase()) {</span>
+<span class="fc" id="L545">		} catch (CustomerNotFoundException e) {</span>
+<span class="fc" id="L546">			logger.error(e.getMessage());</span>
+<span class="fc" id="L547">			return Collections.emptyList();</span>
+<span class="nc" id="L548">		} catch (CreditCardNotFoundException e) {</span>
+<span class="nc" id="L549">			logger.error(e.getMessage());</span>
+<span class="nc" id="L550">			return Collections.emptyList();</span>
+<span class="nc" id="L551">		} catch (DataAccessException e) {</span>
+<span class="nc" id="L552">			logger.error(&quot;Database error while retrieving creditcards&quot;, e);</span>
+<span class="nc" id="L553">			return Collections.emptyList();</span>
+<span class="nc" id="L554">		} catch (Exception e) {</span>
+<span class="nc" id="L555">			logger.error(&quot;Error retrieving credit cards for user: {}&quot;, username);</span>
+<span class="nc" id="L556">			return Collections.emptyList(); // Handle other errors</span>
+<span class="fc" id="L557">		}</span>
+<span class="fc" id="L558">		return activeCreditCards.stream().filter(card -&gt; {</span>
+<span class="pc bpc" id="L559" title="3 of 4 branches missed.">			switch (statusFilter.toLowerCase()) {</span>
 			case &quot;enabled&quot;:
-<span class="nc" id="L559">				return card.getStatus().equalsIgnoreCase(&quot;enabled&quot;);</span>
+<span class="fc" id="L561">				return card.getStatus().equalsIgnoreCase(&quot;enabled&quot;);</span>
 			case &quot;disabled&quot;:
-<span class="nc" id="L561">				return card.getStatus().equalsIgnoreCase(&quot;disabled&quot;);</span>
+<span class="nc" id="L563">				return card.getStatus().equalsIgnoreCase(&quot;disabled&quot;);</span>
 			case &quot;both&quot;:
-<span class="nc" id="L563">				return true; // Include all cards</span>
+<span class="nc" id="L565">				return true; // Include all cards</span>
 			default:
-<span class="nc" id="L565">				throw new IllegalArgumentException(&quot;Invalid status filter: &quot; + statusFilter);</span>
+<span class="nc" id="L567">				throw new IllegalArgumentException(&quot;Invalid status filter: &quot; + statusFilter);</span>
 			}
-<span class="nc" id="L567">		}).collect(Collectors.toList());</span>
+<span class="fc" id="L569">		}).collect(Collectors.toList());</span>
 	}
 
 	// Utility method to get transactions for the user
 
 	List&lt;CreditCardTransaction&gt; getTransactionsForUser(String username) {
 
-<span class="nc" id="L574">		List&lt;CreditCardTransaction&gt; cardTransactions = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L576">		List&lt;CreditCardTransaction&gt; cardTransactions = new ArrayList&lt;&gt;();</span>
 		try {
-<span class="nc" id="L576">			cardTransactions = transactionRepository.findByUsername(username).getCreditcards().stream()</span>
-<span class="nc" id="L577">					.collect(Collectors.toList());</span>
-<span class="nc bnc" id="L578" title="All 4 branches missed.">			if (cardTransactions == null || cardTransactions.isEmpty()) {</span>
-<span class="nc" id="L579">				logger.error(&quot;No transactions found for user: {}&quot;, username);</span>
-<span class="nc" id="L580">				throw new CreditCardNotFoundException(username);</span>
+<span class="fc" id="L578">			cardTransactions = transactionRepository.findByUsername(username).getCreditcards().stream()</span>
+<span class="fc" id="L579">					.collect(Collectors.toList());</span>
+<span class="pc bpc" id="L580" title="2 of 4 branches missed.">			if (cardTransactions == null || cardTransactions.isEmpty()) {</span>
+<span class="nc" id="L581">				logger.error(&quot;No transactions found for user: {}&quot;, username);</span>
+<span class="nc" id="L582">				throw new CreditCardNotFoundException(username);</span>
 			}
-<span class="nc" id="L582">		} catch (TransactionNotFoundException e) {</span>
-<span class="nc" id="L583">			logger.error(e.getMessage());</span>
-<span class="nc" id="L584">			return Collections.emptyList(); // Handle user not found exception</span>
-<span class="nc" id="L585">		} catch (DataAccessException e) {</span>
-<span class="nc" id="L586">			logger.error(&quot;Database error while retrieving transactions&quot;, e);</span>
-<span class="nc" id="L587">			return Collections.emptyList();</span>
-<span class="nc" id="L588">		} catch (Exception e) {</span>
-<span class="nc" id="L589">			logger.error(&quot;Error retrieving Transactions for user: {}&quot;, username);</span>
-<span class="nc" id="L590">			return Collections.emptyList();</span>
-<span class="nc" id="L591">		}</span>
-<span class="nc" id="L592">		return cardTransactions;</span>
+<span class="nc" id="L584">		} catch (TransactionNotFoundException e) {</span>
+<span class="nc" id="L585">			logger.error(e.getMessage());</span>
+<span class="nc" id="L586">			return Collections.emptyList(); // Handle user not found exception</span>
+<span class="nc" id="L587">		} catch (DataAccessException e) {</span>
+<span class="nc" id="L588">			logger.error(&quot;Database error while retrieving transactions&quot;, e);</span>
+<span class="nc" id="L589">			return Collections.emptyList();</span>
+<span class="nc" id="L590">		} catch (Exception e) {</span>
+<span class="nc" id="L591">			logger.error(&quot;Error retrieving Transactions for user: {}&quot;, username);</span>
+<span class="nc" id="L592">			return Collections.emptyList();</span>
+<span class="fc" id="L593">		}</span>
+<span class="fc" id="L594">		return cardTransactions;</span>
 	}
 
 	// Helper method to build the pageable info object
 
 	private Map&lt;String, Object&gt; buildPageableInfo(Pageable pageable) {
-<span class="nc" id="L598">		Map&lt;String, Object&gt; pageableInfo = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L599">		pageableInfo.put(&quot;pageSize&quot;, pageable.getPageSize());</span>
-<span class="nc" id="L600">		pageableInfo.put(&quot;pageNumber&quot;, pageable.getPageNumber());</span>
-<span class="nc" id="L601">		pageableInfo.put(&quot;sort&quot;,</span>
-<span class="nc bnc" id="L602" title="All 2 branches missed.">				Map.of(&quot;sorted&quot;, pageable.getSort().isSorted(), &quot;unsorted&quot;, !pageable.getSort().isSorted()));</span>
-<span class="nc" id="L603">		return pageableInfo;</span>
+<span class="fc" id="L600">		Map&lt;String, Object&gt; pageableInfo = new LinkedHashMap&lt;&gt;();</span>
+<span class="fc" id="L601">		pageableInfo.put(&quot;pageSize&quot;, pageable.getPageSize());</span>
+<span class="fc" id="L602">		pageableInfo.put(&quot;pageNumber&quot;, pageable.getPageNumber());</span>
+<span class="fc" id="L603">		pageableInfo.put(&quot;sort&quot;,</span>
+<span class="pc bpc" id="L604" title="1 of 2 branches missed.">				Map.of(&quot;sorted&quot;, pageable.getSort().isSorted(), &quot;unsorted&quot;, !pageable.getSort().isSorted()));</span>
+<span class="fc" id="L605">		return pageableInfo;</span>
 	}
 
 }

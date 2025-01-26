@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.ccms.service.service.impl.CreditCardServiceImplTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.884 s - in com.ccms.service.service.impl.CreditCardServiceImplTest
+Tests run: 30, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.091 s - in com.ccms.service.service.impl.CreditCardServiceImplTest

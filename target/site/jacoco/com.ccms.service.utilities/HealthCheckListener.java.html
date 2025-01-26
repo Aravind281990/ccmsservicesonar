@@ -45,11 +45,11 @@ import com.ccms.service.kafka.AccessLogKafkaConsumer;
 
         try {
 <span class="fc" id="L47">            RestTemplate restTemplate = new RestTemplate();</span>
-<span class="nc" id="L48">            String healthStatus = restTemplate.getForObject(healthCheckUrl, String.class);</span>
-<span class="nc" id="L49">            logger.info(&quot;Health check response on startup: &quot; + healthStatus);</span>
+<span class="fc" id="L48">            String healthStatus = restTemplate.getForObject(healthCheckUrl, String.class);</span>
+<span class="fc" id="L49">            logger.info(&quot;Health check response on startup: &quot; + healthStatus);</span>
 <span class="fc" id="L50">        } catch (Exception e) {</span>
 <span class="fc" id="L51">        	logger.info(&quot;Health check failed: &quot; + e.getMessage());</span>
-<span class="nc" id="L52">        }</span>
+<span class="fc" id="L52">        }</span>
 <span class="fc" id="L53">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

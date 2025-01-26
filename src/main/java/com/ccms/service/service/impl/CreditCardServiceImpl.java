@@ -99,7 +99,7 @@ public class CreditCardServiceImpl implements CreditCardService {
 		validateCreditCardDetail(creditCardDetail);
 
 		// Retrieve all credit cards for the given user
-
+		
 		List<CreditCardDetail> creditCards = getAllCreditCardsForUser(username).getCreditcards();
 
 		// Check if there are any existing credit cards
@@ -137,10 +137,11 @@ public class CreditCardServiceImpl implements CreditCardService {
 
 		CreditCard creditCard = creditCardRepository.findByUsername1(username);
 
-		if (creditCard == null) {
+		if (creditCard == null || creditCards.isEmpty()) {
 
 			creditCard = new CreditCard();
 			creditCard.setUsername(username);
+			System.out.println(creditCard.getUsername());
 			creditCard.setNameOnTheCard(customer.getName().getFirst() + " " + customer.getName().getLast());
 			creditCard.setCreditcards(new ArrayList<>());
 		}
@@ -172,8 +173,9 @@ public class CreditCardServiceImpl implements CreditCardService {
 			throw new CreditCardProcessingException("Error encrypting credit card number for user: " + username, e);
 		}
 
+		
 		creditCard.getCreditcards().add(creditCardDetail);
-
+		
 		creditCard = creditCardRepository.save(creditCard);
 
 		return creditCard.getCreditcards().stream()
@@ -190,6 +192,11 @@ public class CreditCardServiceImpl implements CreditCardService {
 			throw new CreditCardNotFoundException(NO_CREDIT_CARD_FOUND_MESSAGE + username);
 		}
 
+	    // If creditCards is null, initialize it as an empty list
+	    if (creditCard.getCreditcards() == null) {
+	        creditCard.setCreditcards(new ArrayList<>());
+	    }
+
 		return creditCard.getCreditcards().stream().filter(card -> card.getCreditCardId() == creditCardId).findFirst()
 				.map(card -> {
 					card.setStatus(card.getStatus().equals(ENABLED) ? DISABLED : ENABLED);
@@ -201,25 +208,29 @@ public class CreditCardServiceImpl implements CreditCardService {
 
 	@Override
 	public CreditCard getAllCreditCardsForUser(String username) {
-
+		
+		
 		Customer customer = customerRepository.findByUsername(username);
 
 		if (customer == null) {
 
 			throw new CustomerNotFoundException("Customer not found : " + username);
 		}
-
+		
+		
 		CreditCard creditcards = creditCardRepository.findByUsername(username);
-
+		
+		
 		if (creditcards == null) {
-
-			throw new CreditCardNotFoundException(NO_CREDIT_CARD_FOUND_MESSAGE + username);
+			
+			return new CreditCard(); 
 		}
 
 		return creditcards;
 	}
     
-	private void validateCreditCardDetail(CreditCardDetail creditCardDetail) {
+	public void validateCreditCardDetail(CreditCardDetail creditCardDetail) {
+		
 
 		// Validate credit card number (basic length check)
 		if (creditCardDetail.getCreditCardNumber().length() != 16) {
@@ -240,8 +251,7 @@ public class CreditCardServiceImpl implements CreditCardService {
 				&& creditCardDetail.getExpiryMonth() < LocalDate.now().getMonthValue()) {
 			throw new IllegalArgumentException("Expiry date is in the past");
 		}
-
-            
+       
 		// Validate CVV
 		if (creditCardDetail.getCvv() < 100 || creditCardDetail.getCvv() > 999) {
 			throw new IllegalArgumentException("Invalid CVV");

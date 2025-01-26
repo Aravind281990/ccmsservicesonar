@@ -531,11 +531,13 @@ public class TransactionServiceimpl implements TransactionService {
 
 	List<CreditCardDetail> getActiveCreditCardsForUser(String username, String statusFilter) {
 		logger.info("Entering getActiveCreditCardsForUser");
-
+		
 		List<CreditCardDetail> activeCreditCards = new ArrayList<>();
-
+		
 		try {
+			
 			activeCreditCards = cardService.getAllCreditCardsForUser(username).getCreditcards();
+	
 			if (activeCreditCards == null || activeCreditCards.isEmpty()) {
 				logger.error("No active credit cards found for user: {}", username);
 				throw new CreditCardNotFoundException(username);

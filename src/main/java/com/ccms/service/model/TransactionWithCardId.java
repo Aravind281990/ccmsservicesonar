@@ -15,7 +15,7 @@ import com.ccms.service.model.Transaction.TransactionDetail;
 public class TransactionWithCardId {
    
 	private int creditCardId;
-	public TransactionDetail transactionDetail;
+	private TransactionDetail transactionDetail;
 
     // Constructor
     public TransactionWithCardId(int creditCardId, TransactionDetail transactionDetail) {

@@ -47,7 +47,7 @@ import jakarta.servlet.http.HttpServletResponse;
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// No initialization needed
-<span class="nc" id="L50">	}</span>
+<span class="fc" id="L50">	}</span>
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -96,10 +96,10 @@ import jakarta.servlet.http.HttpServletResponse;
 		    clientIp,
 <span class="fc" id="L97">		    statusCode,</span>
 <span class="fc" id="L98">		    duration,</span>
-<span class="pc bpc" id="L99" title="1 of 2 branches missed.">		    (userAgent != null ? userAgent : &quot;N/A&quot;),  // Handle null values for User-Agent</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">		    (userAgent != null ? userAgent : &quot;N/A&quot;),  // Handle null values for User-Agent</span>
 <span class="fc" id="L100">		    requestSize,</span>
 <span class="fc" id="L101">		    responseSize,</span>
-<span class="pc bpc" id="L102" title="1 of 2 branches missed.">		    (referer != null ? referer : &quot;N/A&quot;)       // Handle null values for Referer</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">		    (referer != null ? referer : &quot;N/A&quot;)       // Handle null values for Referer</span>
 		);
 
 
