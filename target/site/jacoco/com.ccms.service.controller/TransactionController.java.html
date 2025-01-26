@@ -55,6 +55,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 	@Autowired
 	private Decodename decodename;
 
+
 	/**
 	 * Fetches all transactions for a given customer, including pagination details.
 	 * 
@@ -72,48 +73,48 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 			@RequestParam(required = false) Integer page, // No default value set
 			@RequestParam(required = false) Integer size) { // No default value set
 
-<span class="fc" id="L75">		String username = decodeUsername(encodedusername);</span>
+<span class="fc" id="L76">		String username = decodeUsername(encodedusername);</span>
 
-<span class="fc" id="L77">		logger.info(&quot;Fetching transactions for user: {}, page: {}, limit: {}&quot;, username, page, size);</span>
+<span class="fc" id="L78">		logger.info(&quot;Fetching transactions for user: {}, page: {}, limit: {}&quot;, username, page, size);</span>
 
-<span class="fc bfc" id="L79" title="All 2 branches covered.">		if (page == null) {</span>
-<span class="fc" id="L80">			page = 0; // Default to the first page</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">		if (page == null) {</span>
+<span class="fc" id="L81">			page = 0; // Default to the first page</span>
 		}
-<span class="fc bfc" id="L82" title="All 2 branches covered.">		if (size == null) {</span>
-<span class="fc" id="L83">			size = 100; // Default to 100 transactions per page</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">		if (size == null) {</span>
+<span class="fc" id="L84">			size = 100; // Default to 100 transactions per page</span>
 		}
 
 		try {
 			// Set pagination details
 
-<span class="fc" id="L89">			Pageable pageable = PageRequest.of(page, size, Sort.by(TRANSACTION_DATE).descending());</span>
+<span class="fc" id="L90">			Pageable pageable = PageRequest.of(page, size, Sort.by(TRANSACTION_DATE).descending());</span>
 
 			// Fetch paginated transactions for the given user
-<span class="fc" id="L92">			Page&lt;TransactionWithCardId&gt; transactions = transactionService.getTransactionsForUser(username, pageable);</span>
+<span class="fc" id="L93">			Page&lt;TransactionWithCardId&gt; transactions = transactionService.getTransactionsForUser(username, pageable);</span>
 
 			// Check if transactions are found
 
-<span class="pc bpc" id="L96" title="2 of 4 branches missed.">			if (transactions == null || transactions.isEmpty()) {</span>
+<span class="pc bpc" id="L97" title="2 of 4 branches missed.">			if (transactions == null || transactions.isEmpty()) {</span>
 
-<span class="fc" id="L98">				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</span>
+<span class="fc" id="L99">				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</span>
 			}
 
 			// Prepare paginated response
 
-<span class="nc" id="L103">			Map&lt;String, Object&gt; response = Map.of(&quot;content&quot;, transactions.getContent(), &quot;totalElements&quot;,</span>
-<span class="nc" id="L104">					transactions.getTotalElements(), &quot;totalPages&quot;, transactions.getTotalPages(), &quot;currentPage&quot;,</span>
-<span class="nc" id="L105">					transactions.getNumber(), &quot;size&quot;, transactions.getSize());</span>
+<span class="nc" id="L104">			Map&lt;String, Object&gt; response = Map.of(&quot;content&quot;, transactions.getContent(), &quot;totalElements&quot;,</span>
+<span class="nc" id="L105">					transactions.getTotalElements(), &quot;totalPages&quot;, transactions.getTotalPages(), &quot;currentPage&quot;,</span>
+<span class="nc" id="L106">					transactions.getNumber(), &quot;size&quot;, transactions.getSize());</span>
 
-<span class="nc" id="L107">			return ResponseEntity.ok(response);</span>
+<span class="nc" id="L108">			return ResponseEntity.ok(response);</span>
 
-<span class="nc" id="L109">		} catch (Exception e) {</span>
+<span class="nc" id="L110">		} catch (Exception e) {</span>
 
-<span class="nc" id="L111">			logger.error(&quot;An error occurred while fetching the credit card transactions&quot;, e);</span>
+<span class="nc" id="L112">			logger.error(&quot;An error occurred while fetching the credit card transactions&quot;, e);</span>
 
 			// Return a 500 Internal Server Error with the exception message
 
-<span class="nc" id="L115">			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(ERROR,</span>
-<span class="nc" id="L116">					List.of(Map.of(ERROR, &quot;An error occurred while fetching transactions: &quot; + e.getMessage()))));</span>
+<span class="nc" id="L116">			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(ERROR,</span>
+<span class="nc" id="L117">					List.of(Map.of(ERROR, &quot;An error occurred while fetching transactions: &quot; + e.getMessage()))));</span>
 		}
 	}
 
@@ -141,20 +142,20 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 		// Username validation: Check if it's null, empty, or exceeds max length
 
-<span class="fc" id="L144">		String username = decodeUsername(encodedusername);</span>
+<span class="fc" id="L145">		String username = decodeUsername(encodedusername);</span>
 
 		// Set defaults for page and limit if they are not provided
-<span class="fc bfc" id="L147" title="All 2 branches covered.">		if (page == null) {</span>
-<span class="fc" id="L148">			page = 0; // Default to the first page</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">		if (page == null) {</span>
+<span class="fc" id="L149">			page = 0; // Default to the first page</span>
 		}
-<span class="fc bfc" id="L150" title="All 2 branches covered.">		if (size == null) {</span>
-<span class="fc" id="L151">			size = 100; // Default to 100 transactions per page</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">		if (size == null) {</span>
+<span class="fc" id="L152">			size = 100; // Default to 100 transactions per page</span>
 		}
 
 		// Status validation: Valid statuses are &quot;enabled&quot;, &quot;disabled&quot;, and &quot;both&quot;
-<span class="pc bpc" id="L155" title="1 of 2 branches missed.">		if (!VALID_STATUSES.contains(status)) {</span>
-<span class="nc" id="L156">			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(List</span>
-<span class="nc" id="L157">					.of(Map.of(ERROR, INVALID_STATUS_MESSAGE)));</span>
+<span class="pc bpc" id="L156" title="1 of 2 branches missed.">		if (!VALID_STATUSES.contains(status)) {</span>
+<span class="nc" id="L157">			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(List</span>
+<span class="nc" id="L158">					.of(Map.of(ERROR, INVALID_STATUS_MESSAGE)));</span>
 
 		}
 
@@ -162,28 +163,28 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 			// Set pagination details
 
-<span class="fc" id="L165">			Pageable pageable = PageRequest.of(page, size, Sort.by(TRANSACTION_DATE).descending());</span>
+<span class="fc" id="L166">			Pageable pageable = PageRequest.of(page, size, Sort.by(TRANSACTION_DATE).descending());</span>
 
 			// Fetch max expenses for the last month
-<span class="fc" id="L168">			Page&lt;Map&lt;String, Object&gt;&gt; maxExpenses = transactionService.getMaxExpensesForLastMonth(username, status,</span>
+<span class="fc" id="L169">			Page&lt;Map&lt;String, Object&gt;&gt; maxExpenses = transactionService.getMaxExpensesForLastMonth(username, status,</span>
 					pageable);
 
 			// If no expenses are found, return a 204 No Content response
-<span class="pc bpc" id="L172" title="1 of 2 branches missed.">			if (maxExpenses.isEmpty()) {</span>
-<span class="fc" id="L173">				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</span>
+<span class="pc bpc" id="L173" title="1 of 2 branches missed.">			if (maxExpenses.isEmpty()) {</span>
+<span class="fc" id="L174">				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</span>
 			}
 
 			// Return the max expenses with a 200 OK response
 
-<span class="nc" id="L178">			return ResponseEntity.ok(maxExpenses);</span>
+<span class="nc" id="L179">			return ResponseEntity.ok(maxExpenses);</span>
 
-<span class="nc" id="L180">		} catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L181">		} catch (IllegalArgumentException e) {</span>
 
-<span class="nc" id="L182">			return ResponseEntity.badRequest().body(List.of(Map.of(ERROR, INVALID_ARGUMENT_MESSAGE)));</span>
-<span class="nc" id="L183">		} catch (Exception e) {</span>
+<span class="nc" id="L183">			return ResponseEntity.badRequest().body(List.of(Map.of(ERROR, INVALID_ARGUMENT_MESSAGE)));</span>
+<span class="nc" id="L184">		} catch (Exception e) {</span>
 
-<span class="nc" id="L185">			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)</span>
-<span class="nc" id="L186">					.body(List.of(Map.of(ERROR, UNEXPECTED_ERROR_MESSAGE)));</span>
+<span class="nc" id="L186">			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)</span>
+<span class="nc" id="L187">					.body(List.of(Map.of(ERROR, UNEXPECTED_ERROR_MESSAGE)));</span>
 		}
 	}
 
@@ -217,29 +218,29 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 		// Validate username
 
 		// Set defaults for page and limit if they are not provided
-<span class="pc bpc" id="L220" title="1 of 2 branches missed.">		if (page == null) {</span>
-<span class="nc" id="L221">			page = 0; // Default to the first page</span>
+<span class="pc bpc" id="L221" title="1 of 2 branches missed.">		if (page == null) {</span>
+<span class="nc" id="L222">			page = 0; // Default to the first page</span>
 		}
 
-<span class="pc bpc" id="L224" title="1 of 2 branches missed.">		if (size == null) {</span>
-<span class="nc" id="L225">			size = 100; // Default to 100 transactions per page</span>
+<span class="pc bpc" id="L225" title="1 of 2 branches missed.">		if (size == null) {</span>
+<span class="nc" id="L226">			size = 100; // Default to 100 transactions per page</span>
 		}
 
-<span class="fc" id="L228">		String username = decodeUsername(encodedusername);</span>
+<span class="fc" id="L229">		String username = decodeUsername(encodedusername);</span>
 
 		// Validate the limit to ensure it's a positive integer greater than 0
-<span class="pc bpc" id="L231" title="1 of 2 branches missed.">		if (limit &lt;= 0) {</span>
-<span class="nc" id="L232">			return buildErrorResponse(LIMIT_PARAMETER_ERROR_MESSAGE);</span>
+<span class="pc bpc" id="L232" title="1 of 2 branches missed.">		if (limit &lt;= 0) {</span>
+<span class="nc" id="L233">			return buildErrorResponse(LIMIT_PARAMETER_ERROR_MESSAGE);</span>
 		}
 		// Validate amountThreshold
-<span class="pc bpc" id="L235" title="1 of 2 branches missed.">		if (amountThreshold &lt;= 0) {</span>
-<span class="nc" id="L236">			return buildErrorResponse(&quot;Amount threshold must be a positive value&quot;);</span>
+<span class="fc bfc" id="L236" title="All 2 branches covered.">		if (amountThreshold &lt;= 0) {</span>
+<span class="fc" id="L237">			return buildErrorResponse(&quot;Amount threshold must be a positive value&quot;);</span>
 		}
 
 		// Validate status (should be either &quot;enabled&quot;, &quot;disabled&quot;, or &quot;both&quot;)
 
-<span class="pc bpc" id="L241" title="1 of 2 branches missed.">		if (!VALID_STATUSES.contains(status)) {</span>
-<span class="nc" id="L242">			return buildErrorResponse(INVALID_STATUS_MESSAGE);</span>
+<span class="fc bfc" id="L242" title="All 2 branches covered.">		if (!VALID_STATUSES.contains(status)) {</span>
+<span class="fc" id="L243">			return buildErrorResponse(INVALID_STATUS_MESSAGE);</span>
 		}
 
 		try {
@@ -247,27 +248,27 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 			// Set pagination details
 
-<span class="fc" id="L250">			Pageable pageable = PageRequest.of(page, size, Sort.by(TRANSACTION_DATE).descending());</span>
+<span class="fc" id="L251">			Pageable pageable = PageRequest.of(page, size, Sort.by(TRANSACTION_DATE).descending());</span>
 
-<span class="fc" id="L252">			Map&lt;String, Page&lt;Map&lt;String, String&gt;&gt;&gt; highValueExpenses = transactionService</span>
-<span class="fc" id="L253">					.getHighValueExpensesForUser(username, limit, status, amountThreshold, pageable);</span>
+<span class="fc" id="L253">			Map&lt;String, Page&lt;Map&lt;String, String&gt;&gt;&gt; highValueExpenses = transactionService</span>
+<span class="fc" id="L254">					.getHighValueExpensesForUser(username, limit, status, amountThreshold, pageable);</span>
 
 			// If no expenses are found, return 204 No Content
-<span class="pc bpc" id="L256" title="1 of 2 branches missed.">			if (highValueExpenses.isEmpty()) {</span>
+<span class="pc bpc" id="L257" title="1 of 2 branches missed.">			if (highValueExpenses.isEmpty()) {</span>
 
-<span class="fc" id="L258">				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</span>
+<span class="fc" id="L259">				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</span>
 			}
 
 			// Return the high-value expenses with a 200 OK response
-<span class="nc" id="L262">			return ResponseEntity.ok(highValueExpenses);</span>
+<span class="nc" id="L263">			return ResponseEntity.ok(highValueExpenses);</span>
 
-<span class="nc" id="L264">		} catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L265">		} catch (IllegalArgumentException e) {</span>
 			// Log exception if needed
-<span class="nc" id="L266">			return buildErrorResponse(INVALID_ARGUMENT_MESSAGE);</span>
-<span class="nc" id="L267">		} catch (Exception e) {</span>
+<span class="nc" id="L267">			return buildErrorResponse(INVALID_ARGUMENT_MESSAGE);</span>
+<span class="nc" id="L268">		} catch (Exception e) {</span>
 			// Log exception for debugging
-<span class="nc" id="L269">			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(</span>
-<span class="nc" id="L270">					Map.of(ERROR, List.of(Map.of(ERROR, UNEXPECTED_ERROR_MESSAGE))));</span>
+<span class="nc" id="L270">			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(</span>
+<span class="nc" id="L271">					Map.of(ERROR, List.of(Map.of(ERROR, UNEXPECTED_ERROR_MESSAGE))));</span>
 		}
 	}
 
@@ -295,52 +296,52 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 		// Validate the username
 
-<span class="fc" id="L298">		String username = decodeUsername(encodedusername);</span>
+<span class="fc" id="L299">		String username = decodeUsername(encodedusername);</span>
 
 		// Set defaults for page and limit if they are not provided
-<span class="fc bfc" id="L301" title="All 2 branches covered.">		if (page == null) {</span>
-<span class="fc" id="L302">			page = 0; // Default to the first page</span>
+<span class="fc bfc" id="L302" title="All 2 branches covered.">		if (page == null) {</span>
+<span class="fc" id="L303">			page = 0; // Default to the first page</span>
 		}
 
-<span class="fc bfc" id="L305" title="All 2 branches covered.">		if (size == null) {</span>
-<span class="fc" id="L306">			size = 100; // Default to 100 transactions per page</span>
+<span class="fc bfc" id="L306" title="All 2 branches covered.">		if (size == null) {</span>
+<span class="fc" id="L307">			size = 100; // Default to 100 transactions per page</span>
 		}
 
 		// Validate the limit to ensure it's a positive integer greater than 0
-<span class="fc bfc" id="L310" title="All 2 branches covered.">		if (limit &lt;= 0) {</span>
-<span class="fc" id="L311">			return buildErrorResponse(LIMIT_PARAMETER_ERROR_MESSAGE);</span>
+<span class="fc bfc" id="L311" title="All 2 branches covered.">		if (limit &lt;= 0) {</span>
+<span class="fc" id="L312">			return buildErrorResponse(LIMIT_PARAMETER_ERROR_MESSAGE);</span>
 		}
 		// Validate status (should be either &quot;enabled&quot;, &quot;disabled&quot;, or &quot;both&quot;)
 
-<span class="pc bpc" id="L315" title="1 of 2 branches missed.">		if (!VALID_STATUSES.contains(status)) {</span>
-<span class="nc" id="L316">			return buildErrorResponse(INVALID_STATUS_MESSAGE);</span>
+<span class="pc bpc" id="L316" title="1 of 2 branches missed.">		if (!VALID_STATUSES.contains(status)) {</span>
+<span class="nc" id="L317">			return buildErrorResponse(INVALID_STATUS_MESSAGE);</span>
 		}
 
 		try {
 
 			// Set pagination details
 
-<span class="fc" id="L323">			Pageable pageable = PageRequest.of(page, size, Sort.by(TRANSACTION_DATE).descending());</span>
+<span class="fc" id="L324">			Pageable pageable = PageRequest.of(page, size, Sort.by(TRANSACTION_DATE).descending());</span>
 
-<span class="fc" id="L325">			Map&lt;Integer, Page&lt;TransactionDetail&gt;&gt; transactions = transactionService</span>
-<span class="fc" id="L326">					.getLastXTransactionsForUser(username, limit, status, pageable);</span>
+<span class="fc" id="L326">			Map&lt;Integer, Page&lt;TransactionDetail&gt;&gt; transactions = transactionService</span>
+<span class="fc" id="L327">					.getLastXTransactionsForUser(username, limit, status, pageable);</span>
 
-<span class="pc bpc" id="L328" title="3 of 4 branches missed.">			if (transactions.isEmpty() || transactions == null) {</span>
+<span class="pc bpc" id="L329" title="3 of 4 branches missed.">			if (transactions.isEmpty() || transactions == null) {</span>
 
-<span class="fc" id="L330">				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</span>
+<span class="fc" id="L331">				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</span>
 
 			}
 
-<span class="nc" id="L334">			return ResponseEntity.ok(transactions);</span>
+<span class="nc" id="L335">			return ResponseEntity.ok(transactions);</span>
 
-<span class="nc" id="L336">		} catch (</span>
+<span class="nc" id="L337">		} catch (</span>
 
 		IllegalArgumentException e) {
-<span class="nc" id="L339">			return buildErrorResponse(INVALID_ARGUMENT_MESSAGE);</span>
+<span class="nc" id="L340">			return buildErrorResponse(INVALID_ARGUMENT_MESSAGE);</span>
 
-<span class="nc" id="L341">		} catch (Exception e) {</span>
-<span class="nc" id="L342">			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)</span>
-<span class="nc" id="L343">					.body(UNEXPECTED_ERROR_MESSAGE);</span>
+<span class="nc" id="L342">		} catch (Exception e) {</span>
+<span class="nc" id="L343">			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)</span>
+<span class="nc" id="L344">					.body(UNEXPECTED_ERROR_MESSAGE);</span>
 		}
 
 	}
@@ -370,70 +371,70 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 		// Validate the username
 
-<span class="fc" id="L373">		String username = decodeUsername(encodedusername);</span>
+<span class="fc" id="L374">		String username = decodeUsername(encodedusername);</span>
 
 		// Set defaults for page and limit if they are not provided
-<span class="fc bfc" id="L376" title="All 2 branches covered.">		if (page == null) {</span>
-<span class="fc" id="L377">			page = 0; // Default to the first page</span>
+<span class="fc bfc" id="L377" title="All 2 branches covered.">		if (page == null) {</span>
+<span class="fc" id="L378">			page = 0; // Default to the first page</span>
 		}
 
-<span class="fc bfc" id="L380" title="All 2 branches covered.">		if (size == null) {</span>
-<span class="fc" id="L381">			size = 100; // Default to 100 transactions per page</span>
+<span class="fc bfc" id="L381" title="All 2 branches covered.">		if (size == null) {</span>
+<span class="fc" id="L382">			size = 100; // Default to 100 transactions per page</span>
 		}
 
 		// Validate the limit to ensure it's a positive integer greater than 0
-<span class="pc bpc" id="L385" title="1 of 2 branches missed.">		if (limit &lt;= 0) {</span>
-<span class="nc" id="L386">			return buildErrorResponse(LIMIT_PARAMETER_ERROR_MESSAGE);</span>
+<span class="pc bpc" id="L386" title="1 of 2 branches missed.">		if (limit &lt;= 0) {</span>
+<span class="nc" id="L387">			return buildErrorResponse(LIMIT_PARAMETER_ERROR_MESSAGE);</span>
 		}
 
 		// Validate status (should be either &quot;enabled&quot;, &quot;disabled&quot;, or &quot;both&quot;)
-<span class="pc bpc" id="L390" title="1 of 2 branches missed.">		if (!VALID_STATUSES.contains(status)) {</span>
-<span class="nc" id="L391">			return buildErrorResponse(INVALID_STATUS_MESSAGE);</span>
+<span class="pc bpc" id="L391" title="1 of 2 branches missed.">		if (!VALID_STATUSES.contains(status)) {</span>
+<span class="nc" id="L392">			return buildErrorResponse(INVALID_STATUS_MESSAGE);</span>
 		}
 
 		try {
 
 			// Set pagination details
-<span class="fc" id="L397">			Pageable pageable = PageRequest.of(page, size, Sort.by(TRANSACTION_DATE).descending());</span>
+<span class="fc" id="L398">			Pageable pageable = PageRequest.of(page, size, Sort.by(TRANSACTION_DATE).descending());</span>
 
 			// Call the service to get the last X expenses
-<span class="fc" id="L400">			Map&lt;String, Object&gt; transactions = transactionService.getLastXExpensesForUser(username, limit, status,</span>
+<span class="fc" id="L401">			Map&lt;String, Object&gt; transactions = transactionService.getLastXExpensesForUser(username, limit, status,</span>
 					pageable);
 
 			// If no transactions are found, return 204 No Content
-<span class="pc bpc" id="L404" title="3 of 4 branches missed.">			if (transactions.isEmpty() || transactions == null) {</span>
-<span class="fc" id="L405">				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</span>
+<span class="pc bpc" id="L405" title="3 of 4 branches missed.">			if (transactions.isEmpty() || transactions == null) {</span>
+<span class="fc" id="L406">				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</span>
 			}
 
 			// Return the last X transactions with a 200 OK response
-<span class="nc" id="L409">			return ResponseEntity.ok(transactions);</span>
+<span class="nc" id="L410">			return ResponseEntity.ok(transactions);</span>
 
-<span class="nc" id="L411">		} catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L412">		} catch (IllegalArgumentException e) {</span>
 			// Log exception if needed
-<span class="nc" id="L413">			return buildErrorResponse(INVALID_ARGUMENT_MESSAGE);</span>
+<span class="nc" id="L414">			return buildErrorResponse(INVALID_ARGUMENT_MESSAGE);</span>
 
-<span class="nc" id="L415">		} catch (Exception e) {</span>
+<span class="nc" id="L416">		} catch (Exception e) {</span>
 			// Log exception for debugging
-<span class="nc" id="L417">			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)</span>
-<span class="nc" id="L418">					.body(List.of(Map.of(ERROR, UNEXPECTED_ERROR_MESSAGE)));</span>
+<span class="nc" id="L418">			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)</span>
+<span class="nc" id="L419">					.body(List.of(Map.of(ERROR, UNEXPECTED_ERROR_MESSAGE)));</span>
 		}
 	}
 
 	// Helper method to decode username
 
-	private String decodeUsername(String encodedusername) {
+	public String decodeUsername(String encodedusername) {
 		try {
-<span class="fc" id="L426">			return decodename.decodeUsername(encodedusername);</span>
-<span class="nc" id="L427">		} catch (InvalidUsernameFormatException e) {</span>
-<span class="nc" id="L428">			logger.error(&quot;Failed to decode username: {}...&quot;, encodedusername.substring(0, 3), e);</span>
-<span class="nc" id="L429">			throw e;</span>
+<span class="fc" id="L427">			return decodename.decodeUsername(encodedusername);</span>
+<span class="fc" id="L428">		} catch (InvalidUsernameFormatException e) {</span>
+<span class="fc" id="L429">			logger.error(&quot;Failed to decode username: {}...&quot;, encodedusername.substring(0, 3), e);</span>
+<span class="fc" id="L430">			throw e;</span>
 		}
 	}
 
 	// Helper method to standardize error responses
-	private ResponseEntity&lt;?&gt; buildErrorResponse(String errorMessage) {
-<span class="fc" id="L435">		return ResponseEntity.status(HttpStatus.BAD_REQUEST)</span>
-<span class="fc" id="L436">				.body(Map.of(ERROR, List.of(Map.of(ERROR, errorMessage))));</span>
+	public ResponseEntity&lt;?&gt; buildErrorResponse(String errorMessage) {
+<span class="fc" id="L436">		return ResponseEntity.status(HttpStatus.BAD_REQUEST)</span>
+<span class="fc" id="L437">				.body(Map.of(ERROR, List.of(Map.of(ERROR, errorMessage))));</span>
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.ccms.service.exception.CreditCardNotFoundException;
@@ -29,9 +30,9 @@ import com.ccms.service.utilities.CreditCardFormatter;
  */
 
 @Service
-<span class="fc" id="L32">public class CreditCardServiceImpl implements CreditCardService {</span>
+<span class="fc" id="L33">public class CreditCardServiceImpl implements CreditCardService {</span>
 
-<span class="fc" id="L34">	private static final Logger logger = LoggerFactory.getLogger(CreditCardServiceImpl.class);</span>
+<span class="fc" id="L35">	private static final Logger logger = LoggerFactory.getLogger(CreditCardServiceImpl.class);</span>
 	private static final String NO_CREDIT_CARD_FOUND_MESSAGE = &quot;No credit card found for username: &quot;;
 	private static final String ENABLED =&quot;enabled&quot;;
 	private static final String DISABLED =&quot;disabled&quot;;
@@ -52,157 +53,158 @@ import com.ccms.service.utilities.CreditCardFormatter;
 	@Override
 	public CreditCard getCreditCardForUser(String username, boolean showFullNumber) {
 
-<span class="fc" id="L55">		Customer customer = customerRepository.findByUsername(username);</span>
+<span class="fc" id="L56">		Customer customer = customerRepository.findByUsername(username);</span>
 
-<span class="fc bfc" id="L57" title="All 2 branches covered.">		if (customer == null) {</span>
-<span class="fc" id="L58">			throw new CustomerNotFoundException(&quot;Customer not found&quot; + username);</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">		if (customer == null) {</span>
+<span class="fc" id="L59">			throw new CustomerNotFoundException(&quot;Customer not found&quot; + username);</span>
 		}
 
-<span class="fc" id="L61">		CreditCard creditcards = creditCardRepository.findByUsername1(username);</span>
+<span class="fc" id="L62">		CreditCard creditcards = creditCardRepository.findByUsername1(username);</span>
 
-<span class="pc bpc" id="L63" title="1 of 2 branches missed.">		if (creditcards == null) {</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">		if (creditcards == null) {</span>
 			// Handle case where no credit card was found for the given user
-<span class="nc" id="L65">			throw new CreditCardNotFoundException(NO_CREDIT_CARD_FOUND_MESSAGE + username);</span>
+<span class="fc" id="L66">			throw new CreditCardNotFoundException(NO_CREDIT_CARD_FOUND_MESSAGE + username);</span>
 		}
 
-<span class="fc" id="L68">		List&lt;CreditCardDetail&gt; activecreditcards = creditcards.getCreditcards();</span>
+<span class="fc" id="L69">		List&lt;CreditCardDetail&gt; activecreditcards = creditcards.getCreditcards();</span>
 
-<span class="fc bfc" id="L70" title="All 2 branches covered.">		for (CreditCardDetail creditCardDetail : activecreditcards) {</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">		for (CreditCardDetail creditCardDetail : activecreditcards) {</span>
 
 			try {
-<span class="fc" id="L73">				String decryptedCreditCardNumber = cardEnDecryption.decrypt(creditCardDetail.getCreditCardNumber());</span>
-<span class="fc bfc" id="L74" title="All 2 branches covered.">				String formattedCreditCardNumber = showFullNumber</span>
-<span class="fc" id="L75">						? cardFormatter.unmaskCreditCardNumber(decryptedCreditCardNumber)</span>
-<span class="fc" id="L76">						: cardFormatter.maskCreditCardNumber(decryptedCreditCardNumber);</span>
+<span class="fc" id="L74">				String decryptedCreditCardNumber = cardEnDecryption.decrypt(creditCardDetail.getCreditCardNumber());</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">				String formattedCreditCardNumber = showFullNumber</span>
+<span class="fc" id="L76">						? cardFormatter.unmaskCreditCardNumber(decryptedCreditCardNumber)</span>
+<span class="fc" id="L77">						: cardFormatter.maskCreditCardNumber(decryptedCreditCardNumber);</span>
 
-<span class="fc" id="L78">				creditCardDetail.setCreditCardNumber(formattedCreditCardNumber);</span>
+<span class="fc" id="L79">				creditCardDetail.setCreditCardNumber(formattedCreditCardNumber);</span>
 
-<span class="nc" id="L80">			} catch (Exception e) {</span>
+<span class="fc" id="L81">			} catch (Exception e) {</span>
 
-<span class="nc" id="L82">				logger.error(&quot;Error processing credit card for user: {}&quot;, username, e);</span>
-<span class="nc" id="L83">				throw new CreditCardProcessingException(&quot;Error processing credit card for user: &quot; + username, e);</span>
-<span class="fc" id="L84">			}</span>
-<span class="fc" id="L85">		}</span>
+<span class="fc" id="L83">				logger.error(&quot;Error processing credit card for user: {}&quot;, username, e);</span>
+<span class="fc" id="L84">				throw new CreditCardProcessingException(&quot;Error processing credit card for user: &quot; + username, e);</span>
+<span class="fc" id="L85">			}</span>
+<span class="fc" id="L86">		}</span>
 
-<span class="fc" id="L87">		return creditcards;</span>
+<span class="fc" id="L88">		return creditcards;</span>
 	}
 
 	@Override
 	public CreditCardDetail addCreditCard(String username, CreditCardDetail creditCardDetail) {
 
-<span class="fc" id="L93">		Customer customer = customerRepository.findByUsername(username);</span>
-<span class="fc bfc" id="L94" title="All 2 branches covered.">		if (customer == null) {</span>
-<span class="fc" id="L95">			throw new CustomerNotFoundException(&quot;Customer not found&quot;);</span>
+<span class="fc" id="L94">		Customer customer = customerRepository.findByUsername(username);</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">		if (customer == null) {</span>
+<span class="fc" id="L96">			throw new CustomerNotFoundException(&quot;Customer not found&quot;);</span>
 		}
 
 		// Validate the credit card details
-<span class="fc" id="L99">		validateCreditCardDetail(creditCardDetail);</span>
+<span class="fc" id="L100">		validateCreditCardDetail(creditCardDetail);</span>
 
+		
+<span class="fc" id="L103">		System.out.println(&quot;creditCardDetail(((((&quot;+creditCardDetail);</span>
 		// Retrieve all credit cards for the given user
 		
-<span class="fc" id="L103">		List&lt;CreditCardDetail&gt; creditCards = getAllCreditCardsForUser(username).getCreditcards();</span>
+<span class="fc" id="L106">		List&lt;CreditCardDetail&gt; creditCards = getAllCreditCardsForUser(username).getCreditcards();</span>
 
 		// Check if there are any existing credit cards
 
-<span class="pc bpc" id="L107" title="2 of 4 branches missed.">		if (creditCards == null || creditCards.isEmpty()) {</span>
+<span class="pc bpc" id="L110" title="2 of 4 branches missed.">		if (creditCards == null || creditCards.isEmpty()) {</span>
 			// No credit cards found for the user
-<span class="nc" id="L109">			logger.info(&quot;No existing credit cards found for user: {}&quot;, username);</span>
+<span class="nc" id="L112">			logger.info(&quot;No existing credit cards found for user: {}&quot;, username);</span>
 		} else {
 			// Check for duplicate credit card by decrypting each stored card number
-<span class="fc bfc" id="L112" title="All 2 branches covered.">			for (CreditCardDetail storedCardDetail : creditCards) {</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">			for (CreditCardDetail storedCardDetail : creditCards) {</span>
 				try {
 					// Decrypt the stored credit card number
-<span class="fc" id="L115">					String decryptedStoredCardNumber = cardEnDecryption.decrypt(storedCardDetail.getCreditCardNumber());</span>
+<span class="fc" id="L118">					String decryptedStoredCardNumber = cardEnDecryption.decrypt(storedCardDetail.getCreditCardNumber());</span>
 
 					// Compare decrypted stored card number with the provided card number
-<span class="fc bfc" id="L118" title="All 2 branches covered.">					if (decryptedStoredCardNumber.equals(creditCardDetail.getCreditCardNumber())) {</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">					if (decryptedStoredCardNumber.equals(creditCardDetail.getCreditCardNumber())) {</span>
 
 						// If match found, throw Duplicate exception
 
-<span class="fc" id="L122">						throw new DuplicateCreditCardException(&quot;Credit card already associated with this user.&quot;);</span>
+<span class="fc" id="L125">						throw new DuplicateCreditCardException(&quot;Credit card already associated with this user.&quot;);</span>
 					}
-<span class="fc" id="L124">				} catch (DuplicateCreditCardException dce) {</span>
+<span class="fc" id="L127">				} catch (DuplicateCreditCardException dce) {</span>
 					// Log the duplicate exception and rethrow it
-<span class="fc" id="L126">					logger.warn(&quot;Duplicate credit card detected for user {}: {}&quot;, username, dce.getMessage());</span>
-<span class="fc" id="L127">					throw dce; // Re-throw the DuplicateCreditCardException</span>
+<span class="fc" id="L129">					logger.warn(&quot;Duplicate credit card detected for user {}: {}&quot;, username, dce.getMessage());</span>
+<span class="fc" id="L130">					throw dce; // Re-throw the DuplicateCreditCardException</span>
 
-<span class="nc" id="L129">				} catch (Exception e) {</span>
+<span class="nc" id="L132">				} catch (Exception e) {</span>
 					// Handle errors during decryption
-<span class="nc" id="L131">					logger.error(&quot;Error decrypting credit card number for user {}: {}&quot;, username, e.getMessage(), e);</span>
-<span class="nc" id="L132">					throw new CreditCardProcessingException(&quot;Error decrypting credit card number for user: &quot; + username,</span>
+<span class="nc" id="L134">					logger.error(&quot;Error decrypting credit card number for user {}: {}&quot;, username, e.getMessage(), e);</span>
+<span class="nc" id="L135">					throw new CreditCardProcessingException(&quot;Error decrypting credit card number for user: &quot; + username,</span>
 							e);
-<span class="fc" id="L134">				}</span>
-<span class="fc" id="L135">			}</span>
+<span class="fc" id="L137">				}</span>
+<span class="fc" id="L138">			}</span>
 		}
 
-<span class="fc" id="L138">		CreditCard creditCard = creditCardRepository.findByUsername1(username);</span>
+<span class="fc" id="L141">		CreditCard creditCard = creditCardRepository.findByUsername1(username);</span>
 
-<span class="pc bpc" id="L140" title="2 of 4 branches missed.">		if (creditCard == null || creditCards.isEmpty()) {</span>
+<span class="pc bpc" id="L143" title="2 of 4 branches missed.">		if (creditCard == null || creditCards.isEmpty()) {</span>
 
-<span class="nc" id="L142">			creditCard = new CreditCard();</span>
-<span class="nc" id="L143">			creditCard.setUsername(username);</span>
-<span class="nc" id="L144">			System.out.println(creditCard.getUsername());</span>
-<span class="nc" id="L145">			creditCard.setNameOnTheCard(customer.getName().getFirst() + &quot; &quot; + customer.getName().getLast());</span>
-<span class="nc" id="L146">			creditCard.setCreditcards(new ArrayList&lt;&gt;());</span>
+<span class="nc" id="L145">			creditCard = new CreditCard();</span>
+<span class="nc" id="L146">			creditCard.setUsername(username);</span>
+<span class="nc" id="L147">			creditCard.setNameOnTheCard(customer.getName().getFirst() + &quot; &quot; + customer.getName().getLast());</span>
+<span class="nc" id="L148">			creditCard.setCreditcards(new ArrayList&lt;&gt;());</span>
 		}
 
 		// Ensure creditCardDetail has a randomly generated creditCardId (if not already
 		// set)
 
-<span class="pc bpc" id="L152" title="1 of 2 branches missed.">		if (creditCardDetail.getCreditCardId() == 0) { // assuming int type, adjust as per your design</span>
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">		if (creditCardDetail.getCreditCardId() == 0) { // assuming int type, adjust as per your design</span>
 			
-<span class="nc" id="L154">			SecureRandom secureRandom = new SecureRandom();</span>
+<span class="nc" id="L156">			SecureRandom secureRandom = new SecureRandom();</span>
 
-<span class="nc" id="L156">			int generatedId = secureRandom.nextInt(999999) + 1; </span>
+<span class="nc" id="L158">			int generatedId = secureRandom.nextInt(999999) + 1; </span>
 			
 		     // If for some reason the ID is still invalid, throw an InvalidRandomOperationException
 			
-<span class="nc bnc" id="L160" title="All 2 branches missed.">            if (generatedId &lt;= 0) {</span>
-<span class="nc" id="L161">                throw new InvalidRandomOperationException(&quot;Generated random ID is invalid: &quot; + generatedId);</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (generatedId &lt;= 0) {</span>
+<span class="nc" id="L163">                throw new InvalidRandomOperationException(&quot;Generated random ID is invalid: &quot; + generatedId);</span>
             }
             
-<span class="nc" id="L164">            creditCardDetail.setCreditCardId(generatedId); // You can adjust the range or use UUID</span>
+<span class="nc" id="L166">            creditCardDetail.setCreditCardId(generatedId); // You can adjust the range or use UUID</span>
 		}
 
 		try {
-<span class="fc" id="L168">			String encryptedCreditCardNumber = cardEnDecryption.encrypt(creditCardDetail.getCreditCardNumber());</span>
-<span class="fc" id="L169">			creditCardDetail.setCreditCardNumber(encryptedCreditCardNumber);</span>
-<span class="nc" id="L170">		} catch (Exception e) {</span>
+<span class="fc" id="L170">			String encryptedCreditCardNumber = cardEnDecryption.encrypt(creditCardDetail.getCreditCardNumber());</span>
+<span class="fc" id="L171">			creditCardDetail.setCreditCardNumber(encryptedCreditCardNumber);</span>
+<span class="nc" id="L172">		} catch (Exception e) {</span>
 
-<span class="nc" id="L172">			logger.error(&quot;Error encrypting credit card number for user: {}&quot;, username, e);</span>
-<span class="nc" id="L173">			throw new CreditCardProcessingException(&quot;Error encrypting credit card number for user: &quot; + username, e);</span>
-<span class="fc" id="L174">		}</span>
+<span class="nc" id="L174">			logger.error(&quot;Error encrypting credit card number for user: {}&quot;, username, e);</span>
+<span class="nc" id="L175">			throw new CreditCardProcessingException(&quot;Error encrypting credit card number for user: &quot; + username, e);</span>
+<span class="fc" id="L176">		}</span>
 
 		
-<span class="fc" id="L177">		creditCard.getCreditcards().add(creditCardDetail);</span>
+<span class="fc" id="L179">		creditCard.getCreditcards().add(creditCardDetail);</span>
 		
-<span class="fc" id="L179">		creditCard = creditCardRepository.save(creditCard);</span>
+<span class="fc" id="L181">		creditCard = creditCardRepository.save(creditCard);</span>
 
-<span class="fc" id="L181">		return creditCard.getCreditcards().stream()</span>
-<span class="fc bfc" id="L182" title="All 2 branches covered.">				.filter(card -&gt; card.getCreditCardId() == creditCardDetail.getCreditCardId()).findFirst()</span>
-<span class="pc" id="L183">				.orElseThrow(() -&gt; new CreditCardNotFoundException(&quot;Saved credit card not found&quot;));</span>
+<span class="fc" id="L183">		return creditCard.getCreditcards().stream()</span>
+<span class="fc bfc" id="L184" title="All 2 branches covered.">				.filter(card -&gt; card.getCreditCardId() == creditCardDetail.getCreditCardId()).findFirst()</span>
+<span class="pc" id="L185">				.orElseThrow(() -&gt; new CreditCardNotFoundException(&quot;Saved credit card not found&quot;));</span>
 	}
 
 	@Override
 	public boolean toggleCreditCardStatus(String username, int creditCardId) {
         
-<span class="fc" id="L189">		CreditCard creditCard = creditCardRepository.findByUsername1(username);</span>
+<span class="fc" id="L191">		CreditCard creditCard = creditCardRepository.findByUsername1(username);</span>
 
-<span class="pc bpc" id="L191" title="1 of 2 branches missed.">		if (creditCard == null) {</span>
-<span class="nc" id="L192">			throw new CreditCardNotFoundException(NO_CREDIT_CARD_FOUND_MESSAGE + username);</span>
+<span class="fc bfc" id="L193" title="All 2 branches covered.">		if (creditCard == null) {</span>
+<span class="fc" id="L194">			throw new CreditCardNotFoundException(NO_CREDIT_CARD_FOUND_MESSAGE + username);</span>
 		}
 
 	    // If creditCards is null, initialize it as an empty list
-<span class="fc bfc" id="L196" title="All 2 branches covered.">	    if (creditCard.getCreditcards() == null) {</span>
-<span class="fc" id="L197">	        creditCard.setCreditcards(new ArrayList&lt;&gt;());</span>
+<span class="fc bfc" id="L198" title="All 2 branches covered.">	    if (creditCard.getCreditcards() == null) {</span>
+<span class="fc" id="L199">	        creditCard.setCreditcards(new ArrayList&lt;&gt;());</span>
 	    }
 
-<span class="fc bfc" id="L200" title="All 2 branches covered.">		return creditCard.getCreditcards().stream().filter(card -&gt; card.getCreditCardId() == creditCardId).findFirst()</span>
-<span class="fc" id="L201">				.map(card -&gt; {</span>
-<span class="pc bpc" id="L202" title="1 of 2 branches missed.">					card.setStatus(card.getStatus().equals(ENABLED) ? DISABLED : ENABLED);</span>
-<span class="fc" id="L203">					creditCardRepository.save(creditCard);</span>
-<span class="fc" id="L204">					return true;</span>
-<span class="fc" id="L205">				}).orElseThrow(() -&gt; new CreditCardNotFoundException(&quot;Credit card not found for ID: &quot; + creditCardId));</span>
+<span class="fc bfc" id="L202" title="All 2 branches covered.">		return creditCard.getCreditcards().stream().filter(card -&gt; card.getCreditCardId() == creditCardId).findFirst()</span>
+<span class="fc" id="L203">				.map(card -&gt; {</span>
+<span class="pc bpc" id="L204" title="1 of 2 branches missed.">					card.setStatus(card.getStatus().equals(ENABLED) ? DISABLED : ENABLED);</span>
+<span class="fc" id="L205">					creditCardRepository.save(creditCard);</span>
+<span class="fc" id="L206">					return true;</span>
+<span class="fc" id="L207">				}).orElseThrow(() -&gt; new CreditCardNotFoundException(&quot;Credit card not found for ID: &quot; + creditCardId));</span>
 
 	}
 
@@ -210,65 +212,66 @@ import com.ccms.service.utilities.CreditCardFormatter;
 	public CreditCard getAllCreditCardsForUser(String username) {
 		
 		
-<span class="fc" id="L213">		Customer customer = customerRepository.findByUsername(username);</span>
+<span class="fc" id="L215">		Customer customer = customerRepository.findByUsername(username);</span>
 
-<span class="fc bfc" id="L215" title="All 2 branches covered.">		if (customer == null) {</span>
+<span class="fc bfc" id="L217" title="All 2 branches covered.">		if (customer == null) {</span>
 
-<span class="fc" id="L217">			throw new CustomerNotFoundException(&quot;Customer not found : &quot; + username);</span>
+<span class="fc" id="L219">			throw new CustomerNotFoundException(&quot;Customer not found : &quot; + username);</span>
 		}
 		
 		
-<span class="fc" id="L221">		CreditCard creditcards = creditCardRepository.findByUsername(username);</span>
+<span class="fc" id="L223">		CreditCard creditcards = creditCardRepository.findByUsername(username);</span>
 		
 		
-<span class="fc bfc" id="L224" title="All 2 branches covered.">		if (creditcards == null) {</span>
+<span class="fc bfc" id="L226" title="All 2 branches covered.">		if (creditcards == null) {</span>
 			
-<span class="fc" id="L226">			return new CreditCard(); </span>
+<span class="fc" id="L228">			return new CreditCard(); </span>
 		}
 
-<span class="fc" id="L229">		return creditcards;</span>
+<span class="fc" id="L231">		return creditcards;</span>
 	}
     
 	public void validateCreditCardDetail(CreditCardDetail creditCardDetail) {
 		
 
 		// Validate credit card number (basic length check)
-<span class="fc bfc" id="L236" title="All 2 branches covered.">		if (creditCardDetail.getCreditCardNumber().length() != 16) {</span>
-<span class="fc" id="L237">			throw new IllegalArgumentException(&quot; Credit card number must be 16 digits&quot;);</span>
+<span class="fc bfc" id="L238" title="All 2 branches covered.">		if (creditCardDetail.getCreditCardNumber().length() != 16) {</span>
+<span class="fc" id="L239">			throw new IllegalArgumentException(&quot; Credit card number must be 16 digits&quot;);</span>
 		}
 
 		// Validate expiry date
-<span class="fc bfc" id="L241" title="All 4 branches covered.">		if (creditCardDetail.getExpiryMonth() &lt; 1 || creditCardDetail.getExpiryMonth() &gt; 12) {</span>
-<span class="fc" id="L242">			throw new IllegalArgumentException(&quot;Invalid expiry month&quot;);</span>
+<span class="fc bfc" id="L243" title="All 4 branches covered.">		if (creditCardDetail.getExpiryMonth() &lt; 1 || creditCardDetail.getExpiryMonth() &gt; 12) {</span>
+<span class="fc" id="L244">			throw new IllegalArgumentException(&quot;Invalid expiry month&quot;);</span>
 		}
 		
 
-<span class="fc bfc" id="L246" title="All 2 branches covered.">		if (creditCardDetail.getExpiryYear() &lt; LocalDate.now().getYear()) {</span>
-<span class="fc" id="L247">			throw new IllegalArgumentException(&quot;Expiry year must be greater than or equal to current year&quot;);</span>
+<span class="fc bfc" id="L248" title="All 2 branches covered.">		if (creditCardDetail.getExpiryYear() &lt; LocalDate.now().getYear()) {</span>
+<span class="fc" id="L249">			throw new IllegalArgumentException(&quot;Expiry year must be greater than or equal to current year&quot;);</span>
 		}
 
-<span class="fc bfc" id="L250" title="All 2 branches covered.">		if (creditCardDetail.getExpiryYear() == LocalDate.now().getYear()</span>
-<span class="pc bpc" id="L251" title="1 of 2 branches missed.">				&amp;&amp; creditCardDetail.getExpiryMonth() &lt; LocalDate.now().getMonthValue()) {</span>
-<span class="nc" id="L252">			throw new IllegalArgumentException(&quot;Expiry date is in the past&quot;);</span>
+<span class="fc bfc" id="L252" title="All 2 branches covered.">		if (creditCardDetail.getExpiryYear() == LocalDate.now().getYear()</span>
+<span class="pc bpc" id="L253" title="1 of 2 branches missed.">				&amp;&amp; creditCardDetail.getExpiryMonth() &lt; LocalDate.now().getMonthValue()) {</span>
+<span class="nc" id="L254">			throw new IllegalArgumentException(&quot;Expiry date is in the past&quot;);</span>
 		}
        
 		// Validate CVV
-<span class="fc bfc" id="L256" title="All 4 branches covered.">		if (creditCardDetail.getCvv() &lt; 100 || creditCardDetail.getCvv() &gt; 999) {</span>
-<span class="fc" id="L257">			throw new IllegalArgumentException(&quot;Invalid CVV&quot;);</span>
+<span class="fc bfc" id="L258" title="All 4 branches covered.">		if (creditCardDetail.getCvv() &lt; 100 || creditCardDetail.getCvv() &gt; 999) {</span>
+<span class="fc" id="L259">			throw new IllegalArgumentException(&quot;Invalid CVV&quot;);</span>
 		}
 
 		// Validate wireTransactionVendor (simple example, adjust to your needs)
-<span class="fc bfc" id="L261" title="All 2 branches covered.">		if (creditCardDetail.getWireTransactionVendor() == null</span>
-<span class="fc bfc" id="L262" title="All 2 branches covered.">				|| creditCardDetail.getWireTransactionVendor().isEmpty()) {</span>
-<span class="fc" id="L263">			throw new IllegalArgumentException(&quot;Wire transaction vendor is required&quot;);</span>
+<span class="fc bfc" id="L263" title="All 2 branches covered.">		if (creditCardDetail.getWireTransactionVendor() == null</span>
+<span class="fc bfc" id="L264" title="All 2 branches covered.">				|| creditCardDetail.getWireTransactionVendor().isEmpty()) {</span>
+<span class="fc" id="L265">			throw new IllegalArgumentException(&quot;Wire transaction vendor is required&quot;);</span>
 		}
 
 		// Validate status (basic example)
-<span class="pc bpc" id="L267" title="1 of 4 branches missed.">		if (!creditCardDetail.getStatus().equals(ENABLED) &amp;&amp; !creditCardDetail.getStatus().equals(DISABLED)) {</span>
-<span class="fc" id="L268">			throw new IllegalArgumentException(&quot;Status must be either 'enabled' or 'disabled'&quot;);</span>
+<span class="pc bpc" id="L269" title="1 of 4 branches missed.">		if (!creditCardDetail.getStatus().equals(ENABLED) &amp;&amp; !creditCardDetail.getStatus().equals(DISABLED)) {</span>
+<span class="fc" id="L270">			throw new IllegalArgumentException(&quot;Status must be either 'enabled' or 'disabled'&quot;);</span>
 		}
 
-<span class="fc" id="L271">	}</span>
+<span class="fc" id="L273">	}</span>
+
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

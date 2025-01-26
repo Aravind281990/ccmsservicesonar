@@ -5,6 +5,7 @@
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/exception/CreditCardProcessingExceptionTest.java
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/service/impl/CustomerServiceImplTest.java
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/utilities/DecodenameTest.java
+/Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/utilities/SuccessResponseTest.java
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/exception/InvalidRandomOperationExceptionTest.java
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/controller/CreditCardControllerTest.java
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/utilities/CreditCardEnDecryptionTest.java
@@ -30,7 +31,9 @@
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/exception/TransactionNotFoundExceptionTest.java
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/kafka/AccessLogKafkaConsumerTest.java
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/utilities/AccessLogFilterTest.java
+/Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/utilities/AuthenticationExceptionTest.java
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/exception/InvalidUsernameExceptionTest.java
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/exception/CreditCardNotFoundExceptionTest.java
+/Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/utilities/ErrorResponseTest.java
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/kafka/CustomerKafkaConsumerTest.java
 /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/src/test/java/com/ccms/service/exception/CustomerNotFoundExceptionTest.java

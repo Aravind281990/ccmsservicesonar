@@ -2,6 +2,9 @@ package com.ccms.service.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+
+import com.ccms.service.model.Customer.Address;
+
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -532,6 +535,22 @@ public class CustomerTest {
         assertFalse(name1.canEqual(otherObject), "CanEqual should return false for objects of different types.");
     }
 
-    
+      @Test
+        void testSettersAndGetters() {
+        	
+        	Address address = new Address();
+            // Set new values and test getters
+        	address.setStreet("456 Elm St");
+        	address.setCity("Chicago");
+        	address.setState("IL");
+        	address.setZip(60601);
+        	address.setCountry("USA");
+
+            assertEquals("456 Elm St", address.getStreet());
+            assertEquals("Chicago", address.getCity());
+            assertEquals("IL", address.getState());
+            assertEquals(60601, address.getZip());
+            assertEquals("USA", address.getCountry());
+        }
 
 }

@@ -3,10 +3,12 @@ com/ccms/service/kafka/TransactionKafkaProducerTest.class
 com/ccms/service/kafka/CreditCardKafkaConsumerTest.class
 com/ccms/service/model/CustomerTest.class
 com/ccms/service/exception/InvalidUsernameExceptionTest.class
+com/ccms/service/utilities/AuthenticationExceptionTest.class
 com/ccms/service/kafka/AccessLogKafkaConsumerTest.class
 com/ccms/service/controller/CreditCardControllerTest.class
 com/ccms/service/exception/GlobalExceptionHandlerTest.class
 com/ccms/service/service/impl/TransactionServiceimplTest.class
+com/ccms/service/utilities/SuccessResponseTest.class
 com/ccms/service/kafka/CustomerKafkaConsumerTest.class
 com/ccms/service/model/TransactionWithCreditCardInfoTest.class
 com/ccms/service/exception/CreditCardNotFoundExceptionTest.class
@@ -16,6 +18,7 @@ com/ccms/service/exception/CreditCardProcessingExceptionTest.class
 com/ccms/service/model/TransactionTest.class
 com/ccms/service/model/CreditCardTest.class
 com/ccms/service/exception/TransactionNotFoundExceptionTest.class
+com/ccms/service/utilities/ErrorResponseTest.class
 com/ccms/service/CcmsServiceApplicationTests.class
 com/ccms/service/utilities/AccessLogFilterTest.class
 com/ccms/service/service/impl/CreditCardServiceImplTest.class

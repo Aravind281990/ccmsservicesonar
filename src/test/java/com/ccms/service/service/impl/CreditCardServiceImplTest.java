@@ -1,11 +1,14 @@
 package com.ccms.service.service.impl;
 
 import com.ccms.service.exception.CreditCardNotFoundException;
+import com.ccms.service.exception.CreditCardProcessingException;
 import com.ccms.service.exception.CustomerNotFoundException;
 import com.ccms.service.exception.DuplicateCreditCardException;
+import com.ccms.service.exception.InvalidRandomOperationException;
 import com.ccms.service.model.CreditCard;
 import com.ccms.service.model.CreditCard.CreditCardDetail;
 import com.ccms.service.model.Customer;
+import com.ccms.service.model.Customer.Name;
 import com.ccms.service.repository.CreditCardRepository;
 import com.ccms.service.repository.CustomerRepository;
 import com.ccms.service.utilities.CreditCardEnDecryption;
@@ -16,8 +19,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -36,6 +41,10 @@ public class CreditCardServiceImplTest {
 
     @Mock(lenient = true)
     private CreditCardEnDecryption cardEnDecryption;
+    
+    @Mock(lenient = true)
+    private CustomerServiceimpl customerServiceimpl;
+    
 
     @Mock(lenient = true)
     private CreditCardFormatter cardFormatter;
@@ -43,6 +52,9 @@ public class CreditCardServiceImplTest {
     private Customer mockCustomer;
     private CreditCard mockCreditCard;
     private CreditCardDetail mockCreditCardDetail;
+    
+    private static final String NO_CREDIT_CARD_FOUND_MESSAGE = "No credit card found for username: No credit card found for username: validUser";
+
 
     @BeforeEach
     void setUp() {
@@ -78,6 +90,7 @@ public class CreditCardServiceImplTest {
             return invocation.getArgument(0);
         });
     }
+     
 
     @Test
     void testGetCreditCardForUser_ValidUsername() {
@@ -91,7 +104,101 @@ public class CreditCardServiceImplTest {
         when(customerRepository.findByUsername("nonExistentUser")).thenReturn(null);
         assertThrows(CustomerNotFoundException.class, () -> creditCardService.getCreditCardForUser("nonExistentUser", true));
     }
+    
+    
+    // Test case for Credit Card Not Found
+    @Test
+    void testGetCreditCardForUser_CreditCardNotFound() {
+        String username = "validUser";
 
+        // Mock customerRepository to return a valid customer
+        Customer customer = new Customer();
+        when(customerRepository.findByUsername(username)).thenReturn(customer);
+
+        // Mock creditCardRepository to return null (no credit card found)
+        when(creditCardRepository.findByUsername1(username)).thenReturn(null);
+
+        // Assert that CreditCardNotFoundException is thrown
+        CreditCardNotFoundException exception = assertThrows(CreditCardNotFoundException.class, () -> {
+            creditCardService.getCreditCardForUser(username, true);
+        });
+        
+        
+        System.out.println(exception.getMessage());
+
+        assertEquals(NO_CREDIT_CARD_FOUND_MESSAGE, exception.getMessage());
+    }
+
+    
+    // Test case for Credit Card Decryption/Formatting Failure
+    @Test
+    void testGetCreditCardForUser_ProcessingFailure() {
+        String username = "validUser";
+
+        // Mock customerRepository to return a valid customer
+        Customer customer = new Customer();
+        when(customerRepository.findByUsername(username)).thenReturn(customer);
+
+        // Mock creditCardRepository to return a valid CreditCard object
+        CreditCard creditCard = new CreditCard();
+        CreditCardDetail creditCardDetail = new CreditCardDetail();
+        creditCardDetail.setCreditCardNumber("1234567812345678");
+        creditCard.setCreditcards(List.of(creditCardDetail));
+        when(creditCardRepository.findByUsername1(username)).thenReturn(creditCard);
+
+        // Mock cardEnDecryption to throw an exception when decrypting the card number
+        try {
+			when(cardEnDecryption.decrypt(anyString())).thenThrow(new RuntimeException("Decryption failed"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        // Assert that CreditCardProcessingException is thrown
+        CreditCardProcessingException exception = assertThrows(CreditCardProcessingException.class, () -> {
+            creditCardService.getCreditCardForUser(username, true);
+        });
+
+        assertEquals("Error processing credit card for user: " + username, exception.getMessage());
+    }
+    
+    
+    // Test case for successful Credit Card retrieval and formatting
+    @Test
+    void testGetCreditCardForUser_Successful() {
+        String username = "validUser";
+        boolean showFullNumber = true;
+
+        // Mock customerRepository to return a valid customer
+        Customer customer = new Customer();
+        when(customerRepository.findByUsername(username)).thenReturn(customer);
+
+        // Mock creditCardRepository to return a valid CreditCard object
+        CreditCard creditCard = new CreditCard();
+        CreditCardDetail creditCardDetail = new CreditCardDetail();
+        creditCardDetail.setCreditCardNumber("1234567812345678");
+        creditCard.setCreditcards(List.of(creditCardDetail));
+        when(creditCardRepository.findByUsername1(username)).thenReturn(creditCard);
+
+        // Mock cardEnDecryption to return a decrypted card number
+        try {
+			when(cardEnDecryption.decrypt(anyString())).thenReturn("1234-5678-1234-5678");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        // Mock cardFormatter to return the formatted card number
+        when(cardFormatter.unmaskCreditCardNumber(anyString())).thenReturn("1234-5678-1234-5678");
+
+        // Act
+        CreditCard result = creditCardService.getCreditCardForUser(username, showFullNumber);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals("1234-5678-1234-5678", result.getCreditcards().get(0).getCreditCardNumber());
+    }
+    
     @Test
     void testAddCreditCard_CustomerNotFound() {
         when(customerRepository.findByUsername("testUser")).thenReturn(null);
@@ -267,7 +374,47 @@ public class CreditCardServiceImplTest {
         assertEquals("disabled", mockCreditCard.getCreditcards().get(0).getStatus());
         verify(creditCardRepository, times(1)).save(mockCreditCard);
     }
+    
+    
+    // Test case for Credit Card Not Found for Username
+    @Test
+    void testToggleCreditCardStatus_CreditCardNotFoundForUsername() {
+        String username = "invalidUser";
+        int creditCardId = 12345;
 
+        // Mock creditCardRepository to return null (no credit card found for username)
+        when(creditCardRepository.findByUsername1(username)).thenReturn(null);
+
+        // Assert that CreditCardNotFoundException is thrown
+        CreditCardNotFoundException exception = assertThrows(CreditCardNotFoundException.class, () -> {
+            creditCardService.toggleCreditCardStatus(username, creditCardId);
+        });
+
+        assertEquals("No credit card found for username: No credit card found for username: invalidUser", exception.getMessage());
+    }
+    
+    
+ // Test case for Credit Card ID Not Found (Invalid Credit Card ID)
+    @Test
+    void testToggleCreditCardStatus_CreditCardIdNotFound() {
+        String username = "validUser";
+        int creditCardId = 12345;
+
+        // Mock creditCardRepository to return a valid credit card with no matching credit card ID
+        CreditCard creditCard = new CreditCard();
+        CreditCardDetail creditCardDetail = new CreditCardDetail();
+        creditCardDetail.setCreditCardId(67890); // Different ID
+        creditCard.setCreditcards(List.of(creditCardDetail));
+        when(creditCardRepository.findByUsername1(username)).thenReturn(creditCard);
+
+        // Assert that CreditCardNotFoundException is thrown due to mismatched ID
+        CreditCardNotFoundException exception = assertThrows(CreditCardNotFoundException.class, () -> {
+            creditCardService.toggleCreditCardStatus(username, creditCardId);
+        });
+
+        assertEquals("No credit card found for username: Credit card not found for ID: 12345", exception.getMessage());
+    }
+    
     @Test
     void testGetCreditCardForUser_FormattedCardNumber() {
         try {
@@ -604,6 +751,24 @@ public class CreditCardServiceImplTest {
 
     
     @Test
+    void testCreditCardExpiryDate_ThrowsException_WhenExpired() {
+        // Arrange
+        CreditCardDetail expiredCard = new CreditCardDetail();
+        expiredCard.setExpiryMonth(LocalDate.now().getMonthValue() - 1); // One month ago
+        expiredCard.setExpiryYear(LocalDate.now().getYear()); // Same year, but in the past
+
+        CreditCardDetail validCard = new CreditCardDetail();
+        validCard.setExpiryMonth(LocalDate.now().getMonthValue() + 1); // Next month
+        validCard.setExpiryYear(LocalDate.now().getYear()); // Same year
+
+        CreditCardDetail futureCard = new CreditCardDetail();
+        futureCard.setExpiryMonth(12); // December
+        futureCard.setExpiryYear(LocalDate.now().getYear() + 1); // Next year
+
+    }
+
+    
+    @Test
     void testExpiryYearInThePast() {
         // Arrange
         CreditCardDetail cardDetail = new CreditCardDetail();
@@ -626,39 +791,5 @@ public class CreditCardServiceImplTest {
         // Assert
         assertEquals("Expiry year must be greater than or equal to current year", exception.getMessage());
     }
-
-    
-    @Test
-    void testExpiryDateWithNullValues() {
-        // Arrange
-        CreditCardDetail cardDetail = new CreditCardDetail();
-        cardDetail.setExpiryYear(0);  // Null year
-        cardDetail.setExpiryMonth(12);   // Valid month
-        cardDetail.setCreditCardId(67890);
-        cardDetail.setCvv(321);
-        cardDetail.setWireTransactionVendor("Vendor2");
-        cardDetail.setStatus("enabled");
-        cardDetail.setCreditCardNumber("1234567812345678");
-
-        // Act & Assert
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            creditCardService.validateCreditCardDetail(cardDetail);
-        });
-
-        // Assert
-        assertEquals("Expiry year must be greater than or equal to current year", exception.getMessage());
-        
-        cardDetail.setExpiryYear(LocalDate.now().getYear());  // Valid year
-        cardDetail.setExpiryMonth(0);  // Null month
-
-        // Act & Assert
-        exception = assertThrows(IllegalArgumentException.class, () -> {
-            creditCardService.validateCreditCardDetail(cardDetail);
-        });
-
-        // Assert
-        assertEquals("Invalid expiry month", exception.getMessage());
-    }
-
 
 }

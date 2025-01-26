@@ -1,9 +1,12 @@
 package com.ccms.service.controller;
 
 import com.ccms.service.exception.DuplicateCreditCardException;
+import com.ccms.service.exception.InvalidUsernameFormatException;
 import com.ccms.service.kafka.CreditCardKafkaProducer;
 import com.ccms.service.model.CreditCard;
+import com.ccms.service.model.CreditCard.CreditCardDetail;
 import com.ccms.service.service.CreditCardService;
+import com.ccms.service.service.impl.CreditCardServiceImpl;
 import com.ccms.service.utilities.Decodename;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,12 +15,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -247,7 +253,6 @@ public class CreditCardControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-    
     @Test
     public void testGetCreditCardsForUser_Success1() throws Exception {
         String encodedUsername = "encodedUser123";
@@ -313,8 +318,5 @@ public class CreditCardControllerTest {
             decodename.decodeUsername(encodedUsername);
         });
     }
-
-    
-
   
 }

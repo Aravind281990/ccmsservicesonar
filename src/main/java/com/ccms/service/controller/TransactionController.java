@@ -55,6 +55,7 @@ public class TransactionController {
 	@Autowired
 	private Decodename decodename;
 
+
 	/**
 	 * Fetches all transactions for a given customer, including pagination details.
 	 * 
@@ -421,7 +422,7 @@ public class TransactionController {
 
 	// Helper method to decode username
 
-	private String decodeUsername(String encodedusername) {
+	public String decodeUsername(String encodedusername) {
 		try {
 			return decodename.decodeUsername(encodedusername);
 		} catch (InvalidUsernameFormatException e) {
@@ -431,7 +432,7 @@ public class TransactionController {
 	}
 
 	// Helper method to standardize error responses
-	private ResponseEntity<?> buildErrorResponse(String errorMessage) {
+	public ResponseEntity<?> buildErrorResponse(String errorMessage) {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body(Map.of(ERROR, List.of(Map.of(ERROR, errorMessage))));
 	}
