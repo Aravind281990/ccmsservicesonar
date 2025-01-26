@@ -47,11 +47,6 @@ class CcmsServiceApplicationTests {
         String[] args = {}; 
         CcmsServiceApplication.main(args);  // Test the main method of the application
     }
-    
-//    @Test
-//    void main() {
-//        new SpringApplicationBuilder(CcmsServiceApplication.class).run();
-//    }
 
     /**
      * Test that the component scanning is working correctly and beans are being loaded.

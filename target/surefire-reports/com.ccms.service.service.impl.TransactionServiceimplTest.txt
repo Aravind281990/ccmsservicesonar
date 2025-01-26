@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.ccms.service.service.impl.TransactionServiceimplTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.04 s - in com.ccms.service.service.impl.TransactionServiceimplTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.109 s - in com.ccms.service.service.impl.TransactionServiceimplTest

@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.ccms.service.exception.CreditCardNotFoundException;
@@ -98,6 +99,8 @@ public class CreditCardServiceImpl implements CreditCardService {
 		// Validate the credit card details
 		validateCreditCardDetail(creditCardDetail);
 
+		
+		System.out.println("creditCardDetail((((("+creditCardDetail);
 		// Retrieve all credit cards for the given user
 		
 		List<CreditCardDetail> creditCards = getAllCreditCardsForUser(username).getCreditcards();
@@ -141,7 +144,6 @@ public class CreditCardServiceImpl implements CreditCardService {
 
 			creditCard = new CreditCard();
 			creditCard.setUsername(username);
-			System.out.println(creditCard.getUsername());
 			creditCard.setNameOnTheCard(customer.getName().getFirst() + " " + customer.getName().getLast());
 			creditCard.setCreditcards(new ArrayList<>());
 		}
@@ -269,5 +271,6 @@ public class CreditCardServiceImpl implements CreditCardService {
 		}
 
 	}
+
 
 }

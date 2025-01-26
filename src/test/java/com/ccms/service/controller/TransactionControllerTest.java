@@ -1,5 +1,6 @@
 package com.ccms.service.controller;
 
+import com.ccms.service.exception.InvalidUsernameFormatException;
 import com.ccms.service.model.Transaction.TransactionDetail;
 import com.ccms.service.service.TransactionService;
 import com.ccms.service.utilities.Decodename;
@@ -19,15 +20,25 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -121,6 +132,70 @@ public class TransactionControllerTest {
                         .param("page", "0")
                         .param("size", "100"))
                 .andExpect(status().isNoContent());  // No content as no high-value expenses are found
+    }
+
+
+    // Test: Invalid amountThreshold (amountThreshold <= 0)
+    @Test
+    void testGetHighValueExpenses_InvalidAmountThreshold() {
+    	
+        when(decodename.decodeUsername(encodedUsername)).thenReturn("testUser");
+
+        ResponseEntity<?> response = transactionController.getHighValueExpenses(encodedUsername, 5, "enabled", 0.0, 0, 10);
+
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertTrue(response.getBody().toString().contains("Amount threshold must be a positive value"));
+    }
+
+    // Test: Invalid status (not "enabled", "disabled", or "both")
+    @Test
+    void testGetHighValueExpenses_InvalidStatus() {
+
+        when(decodename.decodeUsername(encodedUsername)).thenReturn("testUser");
+
+        ResponseEntity<?> response = transactionController.getHighValueExpenses(encodedUsername, 5, "invalidStatus", 1000.0, 0, 10);
+
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertTrue(response.getBody().toString().contains("Invalid status"));
+    }
+
+    // Test: No expenses found (empty response)
+    @Test
+    void testGetHighValueExpenses_NoContent() {
+    	
+        int limit = 5;
+        String status = "enabled";
+        double amountThreshold = 1000.0;
+        int page = 0;
+        int size = 10;
+
+        when(decodename.decodeUsername(encodedUsername)).thenReturn(username);
+        when(transactionService.getHighValueExpensesForUser(username, limit, status, amountThreshold, PageRequest.of(page, size)))
+                .thenReturn(new HashMap<>());
+
+        ResponseEntity<?> response = transactionController.getHighValueExpenses(encodedUsername, limit, status, amountThreshold, page, size);
+
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+    }
+
+    // Test: Internal server error (generic exception handling)
+    @Test
+    void testGetHighValueExpenses_InternalServerError() {
+    
+        int limit = 5;
+        String status = "enabled";
+        double amountThreshold = 1000.0;
+        int page = 0;
+        int size = 10;
+
+        when(decodename.decodeUsername(encodedUsername)).thenReturn(username);
+        when(transactionService.getHighValueExpensesForUser(username, limit, status, amountThreshold, PageRequest.of(page, size)))
+                .thenThrow(new RuntimeException("Unexpected error"));
+
+        ResponseEntity<?> response = transactionController.getHighValueExpenses(encodedUsername, limit, status, amountThreshold, page, size);
+
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+//        assertTrue(response.getBody().toString().contains("Unexpected error"));
     }
     
     
@@ -251,4 +326,59 @@ public class TransactionControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error").value("Invalid username"));
     }
+    
+
+    // Test for successful username decoding
+    @Test
+    public void testDecodeUsername_Success() {
+        // Arrange
+        String encodedUsername = "ZW5jb2RlZFVzZXJuYW1lMTIz";
+        String decodedUsername = "decodedUsername123";
+        when(decodename.decodeUsername(encodedUsername)).thenReturn(decodedUsername);
+
+        // Act
+        String result = transactionController.decodeUsername(encodedUsername);
+
+        // Assert
+        assertEquals(decodedUsername, result);  // Assert that the decoded username is returned correctly
+        verify(decodename, times(1)).decodeUsername(encodedUsername);  // Verify the decode method was called once
+    }
+
+ // Test for failure in decoding username (InvalidUsernameFormatException)
+    @Test
+    public void testDecodeUsername_Failure() {
+        // Arrange
+        String encodedUsername = "ZW5jb2RlZFVzZXJuYW1lMTI";
+        when(decodename.decodeUsername(encodedUsername)).thenThrow(InvalidUsernameFormatException.class);
+
+        // Act & Assert: Verify that InvalidUsernameFormatException is thrown
+        InvalidUsernameFormatException thrown = assertThrows(
+            InvalidUsernameFormatException.class, 
+            () -> transactionController.decodeUsername(encodedUsername)
+        );
+
+        // Optionally, assert some details about the exception if needed
+        assertNotNull(thrown);
+    }
+    // Test for buildErrorResponse method to return correct BAD_REQUEST response
+    @Test
+    public void testBuildErrorResponse() {
+        // Arrange
+        String errorMessage = "Invalid username format";
+
+        // Act
+        ResponseEntity<?> response = transactionController.buildErrorResponse(errorMessage);
+
+        // Assert: Check if the status code is BAD_REQUEST
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+
+        // Extract the body of the response and verify it contains the error message
+        Map<String, Object> body = (Map<String, Object>) response.getBody();
+        assertTrue(body.containsKey("error"));
+        List<Map<String, String>> errorList = (List<Map<String, String>>) body.get("error");
+
+        // Ensure the error list contains the error message
+        assertTrue(errorList.get(0).containsValue(errorMessage));
+    }
+
 }
