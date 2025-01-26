@@ -478,13 +478,11 @@ public class TransactionServiceimplTest {
         try {
 			when(cardEnDecryption.decrypt(creditCard1.getCreditCardNumber())).thenReturn("1111-1111-1111-1111");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         try {
 			when(cardEnDecryption.decrypt(creditCard2.getCreditCardNumber())).thenReturn("2222-2222-2222-2222");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         when(cardFormatter.maskCreditCardNumber(anyString())).thenReturn("****-****-****-1111");

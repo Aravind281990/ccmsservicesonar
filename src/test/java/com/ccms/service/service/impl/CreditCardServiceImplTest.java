@@ -150,7 +150,6 @@ public class CreditCardServiceImplTest {
         try {
 			when(cardEnDecryption.decrypt(anyString())).thenThrow(new RuntimeException("Decryption failed"));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -184,7 +183,6 @@ public class CreditCardServiceImplTest {
         try {
 			when(cardEnDecryption.decrypt(anyString())).thenReturn("1234-5678-1234-5678");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -420,7 +418,6 @@ public class CreditCardServiceImplTest {
         try {
 			when(cardEnDecryption.decrypt(anyString())).thenReturn("1234567812345678");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         when(cardFormatter.maskCreditCardNumber(anyString())).thenReturn("**** **** **** 5678");
