@@ -1,4 +1,1 @@
-/mvnw text eol=lf
-*.cmd text eol=crlf
-target/CcmsService-0.0.1-SNAPSHOT.jar filter=lfs diff=lfs merge=lfs -text
-*.jar filter=lfs diff=lfs merge=lfs -text
+
