@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.ccms.service.kafka.CustomerKafkaConsumerTest" time="1.168" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.ccms.service.kafka.CustomerKafkaConsumerTest" time="1.192" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="jdk.tls.rejectClientInitiatedRenegotiation" value="true"/>
     <property name="java.specification.version" value="17"/>
@@ -16,19 +16,18 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/target/surefire/surefirebooter9524509092230090176.jar /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/target/surefire 2025-01-27T01-12-59_723-jvmRun1 surefire6857966060338761782tmp surefire_011512304591251151464tmp"/>
+    <property name="sun.java.command" value="/Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/target/surefire/surefirebooter6776084794090741542.jar /Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/target/surefire 2025-01-27T01-23-47_865-jvmRun1 surefire2943022582423532803tmp surefire_014038816187924093235tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/target/test-classes:/Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/target/classes:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-starter-data-mongodb/3.0.12/spring-boot-starter-data-mongodb-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-starter/3.0.12/spring-boot-starter-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot/3.0.12/spring-boot-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.0.12/spring-boot-autoconfigure-3.0.12.jar:/Users/a0p07mo/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/Users/a0p07mo/.m2/repository/org/yaml/snakeyaml/1.33/snakeyaml-1.33.jar:/Users/a0p07mo/.m2/repository/org/mongodb/mongodb-driver-sync/4.8.2/mongodb-driver-sync-4.8.2.jar:/Users/a0p07mo/.m2/repository/org/mongodb/bson/4.8.2/bson-4.8.2.jar:/Users/a0p07mo/.m2/repository/org/mongodb/mongodb-driver-core/4.8.2/mongodb-driver-core-4.8.2.jar:/Users/a0p07mo/.m2/repository/org/mongodb/bson-record-codec/4.8.2/bson-record-codec-4.8.2.jar:/Users/a0p07mo/.m2/repository/org/springframework/data/spring-data-mongodb/4.0.11/spring-data-mongodb-4.0.11.jar:/Users/a0p07mo/.m2/repository/org/springframework/spring-beans/6.0.13/spring-beans-6.0.13.jar:/Users/a0p07mo/.m2/repository/org/springframework/spring-expression/6.0.13/spring-expression-6.0.13.jar:/Users/a0p07mo/.m2/repository/org/springframework/data/spring-data-commons/3.0.11/spring-data-commons-3.0.11.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.0.12/spring-boot-starter-web-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.0.12/spring-boot-starter-json-3.0.12.jar:/Users/a0p07mo/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.14.3/jackson-datatype-jdk8-2.14.3.jar:/Users/a0p07mo/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.14.3/jackson-datatype-jsr310-2.14.3.jar:/Users/a0p07mo/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.14.3/jackson-module-parameter-names-2.14.3.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.0.12/spring-boot-starter-tomcat-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.15/tomcat-embed-core-10.1.15.jar:/Users/a0p07mo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.15/tomcat-embed-websocket-10.1.15.jar:/Users/a0p07mo/.m2/repository/org/springframework/spring-web/6.0.13/spring-web-6.0.13.jar:/Users/a0p07mo/.m2/repository/org/springframework/spring-webmvc/6.0.13/spring-webmvc-6.0.13.jar:/Users/a0p07mo/.m2/repository/org/apache/kafka/kafka-streams/3.3.2/kafka-streams-3.3.2.jar:/Users/a0p07mo/.m2/repository/org/apache/kafka/kafka-clients/3.3.2/kafka-clients-3.3.2.jar:/Users/a0p07mo/.m2/repository/com/github/luben/zstd-jni/1.5.2-1/zstd-jni-1.5.2-1.jar:/Users/a0p07mo/.m2/repository/org/lz4/lz4-java/1.8.0/lz4-java-1.8.0.jar:/Users/a0p07mo/.m2/repository/org/xerial/snappy/snappy-java/1.1.8.4/snappy-java-1.1.8.4.jar:/Users/a0p07mo/.m2/repository/org/rocksdb/rocksdbjni/7.1.2/rocksdbjni-7.1.2.jar:/Users/a0p07mo/.m2/repository/org/slf4j/slf4j-api/2.0.9/slf4j-api-2.0.9.jar:/Users/a0p07mo/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.14.3/jackson-annotations-2.14.3.jar:/Users/a0p07mo/.m2/repository/org/springframework/kafka/spring-kafka/3.0.12/spring-kafka-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/springframework/spring-context/6.0.13/spring-context-6.0.13.jar:/Users/a0p07mo/.m2/repository/org/springframework/spring-messaging/6.0.13/spring-messaging-6.0.13.jar:/Users/a0p07mo/.m2/repository/org/springframework/spring-tx/6.0.13/spring-tx-6.0.13.jar:/Users/a0p07mo/.m2/repository/org/springframework/retry/spring-retry/2.0.4/spring-retry-2.0.4.jar:/Users/a0p07mo/.m2/repository/io/micrometer/micrometer-observation/1.10.12/micrometer-observation-1.10.12.jar:/Users/a0p07mo/.m2/repository/io/micrometer/micrometer-commons/1.10.12/micrometer-commons-1.10.12.jar:/Users/a0p07mo/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-starter-actuator/3.0.12/spring-boot-starter-actuator-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-actuator-autoconfigure/3.0.12/spring-boot-actuator-autoconfigure-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-actuator/3.0.12/spring-boot-actuator-3.0.12.jar:/Users/a0p07mo/.m2/repository/io/micrometer/micrometer-core/1.10.12/micrometer-core-1.10.12.jar:/Users/a0p07mo/.m2/repository/org/hdrhistogram/HdrHistogram/2.1.12/HdrHistogram-2.1.12.jar:/Users/a0p07mo/.m2/repository/org/latencyutils/LatencyUtils/2.0.3/LatencyUtils-2.0.3.jar:/Users/a0p07mo/.m2/repository/io/micrometer/micrometer-registry-prometheus/1.10.12/micrometer-registry-prometheus-1.10.12.jar:/Users/a0p07mo/.m2/repository/io/prometheus/simpleclient_common/0.16.0/simpleclient_common-0.16.0.jar:/Users/a0p07mo/.m2/repository/io/prometheus/simpleclient/0.16.0/simpleclient-0.16.0.jar:/Users/a0p07mo/.m2/repository/io/prometheus/simpleclient_tracer_otel/0.16.0/simpleclient_tracer_otel-0.16.0.jar:/Users/a0p07mo/.m2/repository/io/prometheus/simpleclient_tracer_common/0.16.0/simpleclient_tracer_common-0.16.0.jar:/Users/a0p07mo/.m2/repository/io/prometheus/simpleclient_tracer_otel_agent/0.16.0/simpleclient_tracer_otel_agent-0.16.0.jar:/Users/a0p07mo/.m2/repository/org/springframework/cloud/spring-cloud-starter-netflix-eureka-client/4.0.4/spring-cloud-starter-netflix-eureka-client-4.0.4.jar:/Users/a0p07mo/.m2/repository/org/springframework/cloud/spring-cloud-starter/4.0.5/spring-cloud-starter-4.0.5.jar:/Users/a0p07mo/.m2/repository/org/springframework/cloud/spring-cloud-context/4.0.5/spring-cloud-context-4.0.5.jar:/Users/a0p07mo/.m2/repository/org/springframework/security/spring-security-crypto/6.0.8/spring-security-crypto-6.0.8.jar:/Users/a0p07mo/.m2/repository/org/springframework/cloud/spring-cloud-commons/4.0.5/spring-cloud-commons-4.0.5.jar:/Users/a0p07mo/.m2/repository/org/springframework/security/spring-security-rsa/1.0.12.RELEASE/spring-security-rsa-1.0.12.RELEASE.jar:/Users/a0p07mo/.m2/repository/org/bouncycastle/bcpkix-jdk18on/1.73/bcpkix-jdk18on-1.73.jar:/Users/a0p07mo/.m2/repository/org/bouncycastle/bcprov-jdk18on/1.73/bcprov-jdk18on-1.73.jar:/Users/a0p07mo/.m2/repository/org/bouncycastle/bcutil-jdk18on/1.73/bcutil-jdk18on-1.73.jar:/Users/a0p07mo/.m2/repository/org/springframework/cloud/spring-cloud-netflix-eureka-client/4.0.4/spring-cloud-netflix-eureka-client-4.0.4.jar:/Users/a0p07mo/.m2/repository/org/apache/httpcomponents/client5/httpclient5/5.1.4/httpclient5-5.1.4.jar:/Users/a0p07mo/.m2/repository/org/apache/httpcomponents/core5/httpcore5/5.1.5/httpcore5-5.1.5.jar:/Users/a0p07mo/.m2/repository/org/apache/httpcomponents/core5/httpcore5-h2/5.1.5/httpcore5-h2-5.1.5.jar:/Users/a0p07mo/.m2/repository/commons-codec/commons-codec/1.15/commons-codec-1.15.jar:/Users/a0p07mo/.m2/repository/com/netflix/eureka/eureka-client/2.0.1/eureka-client-2.0.1.jar:/Users/a0p07mo/.m2/repository/com/netflix/netflix-commons/netflix-eventbus/0.3.0/netflix-eventbus-0.3.0.jar:/Users/a0p07mo/.m2/repository/com/netflix/netflix-commons/netflix-infix/0.3.0/netflix-infix-0.3.0.jar:/Users/a0p07mo/.m2/repository/commons-jxpath/commons-jxpath/1.3/commons-jxpath-1.3.jar:/Users/a0p07mo/.m2/repository/joda-time/joda-time/2.3/joda-time-2.3.jar:/Users/a0p07mo/.m2/repository/org/antlr/antlr-runtime/3.4/antlr-runtime-3.4.jar:/Users/a0p07mo/.m2/repository/org/antlr/stringtemplate/3.2.1/stringtemplate-3.2.1.jar:/Users/a0p07mo/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar:/Users/a0p07mo/.m2/repository/com/google/code/gson/gson/2.9.1/gson-2.9.1.jar:/Users/a0p07mo/.m2/repository/org/apache/commons/commons-math/2.2/commons-math-2.2.jar:/Users/a0p07mo/.m2/repository/com/thoughtworks/xstream/xstream/1.4.19/xstream-1.4.19.jar:/Users/a0p07mo/.m2/repository/io/github/x-stream/mxparser/1.2.2/mxparser-1.2.2.jar:/Users/a0p07mo/.m2/repository/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.jar:/Users/a0p07mo/.m2/repository/jakarta/ws/rs/jakarta.ws.rs-api/3.1.0/jakarta.ws.rs-api-3.1.0.jar:/Users/a0p07mo/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Users/a0p07mo/.m2/repository/com/netflix/servo/servo-core/0.12.21/servo-core-0.12.21.jar:/Users/a0p07mo/.m2/repository/com/google/guava/guava/19.0/guava-19.0.jar:/Users/a0p07mo/.m2/repository/org/apache/httpcomponents/httpclient/4.5.14/httpclient-4.5.14.jar:/Users/a0p07mo/.m2/repository/org/apache/httpcomponents/httpcore/4.4.16/httpcore-4.4.16.jar:/Users/a0p07mo/.m2/repository/commons-configuration/commons-configuration/1.10/commons-configuration-1.10.jar:/Users/a0p07mo/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar:/Users/a0p07mo/.m2/repository/org/codehaus/jettison/jettison/1.4.0/jettison-1.4.0.jar:/Users/a0p07mo/.m2/repository/com/netflix/eureka/eureka-core/2.0.1/eureka-core-2.0.1.jar:/Users/a0p07mo/.m2/repository/com/fasterxml/woodstox/woodstox-core/6.2.1/woodstox-core-6.2.1.jar:/Users/a0p07mo/.m2/repository/org/codehaus/woodstox/stax2-api/4.2.1/stax2-api-4.2.1.jar:/Users/a0p07mo/.m2/repository/org/springframework/cloud/spring-cloud-starter-loadbalancer/4.0.5/spring-cloud-starter-loadbalancer-4.0.5.jar:/Users/a0p07mo/.m2/repository/org/springframework/cloud/spring-cloud-loadbalancer/4.0.5/spring-cloud-loadbalancer-4.0.5.jar:/Users/a0p07mo/.m2/repository/io/projectreactor/reactor-core/3.5.11/reactor-core-3.5.11.jar:/Users/a0p07mo/.m2/repository/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar:/Users/a0p07mo/.m2/repository/io/projectreactor/addons/reactor-extra/3.5.1/reactor-extra-3.5.1.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-starter-cache/3.0.12/spring-boot-starter-cache-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/springframework/spring-context-support/6.0.13/spring-context-support-6.0.13.jar:/Users/a0p07mo/.m2/repository/com/stoyanr/evictor/1.0.0/evictor-1.0.0.jar:/Users/a0p07mo/.m2/repository/org/springframework/cloud/spring-cloud-starter-circuitbreaker-resilience4j/3.0.4/spring-cloud-starter-circuitbreaker-resilience4j-3.0.4.jar:/Users/a0p07mo/.m2/repository/org/springframework/cloud/spring-cloud-circuitbreaker-resilience4j/3.0.4/spring-cloud-circuitbreaker-resilience4j-3.0.4.jar:/Users/a0p07mo/.m2/repository/io/github/resilience4j/resilience4j-spring-boot3/2.0.2/resilience4j-spring-boot3-2.0.2.jar:/Users/a0p07mo/.m2/repository/io/github/resilience4j/resilience4j-spring6/2.0.2/resilience4j-spring6-2.0.2.jar:/Users/a0p07mo/.m2/repository/io/github/resilience4j/resilience4j-annotations/2.0.2/resilience4j-annotations-2.0.2.jar:/Users/a0p07mo/.m2/repository/io/github/resilience4j/resilience4j-consumer/2.0.2/resilience4j-consumer-2.0.2.jar:/Users/a0p07mo/.m2/repository/io/github/resilience4j/resilience4j-circularbuffer/2.0.2/resilience4j-circularbuffer-2.0.2.jar:/Users/a0p07mo/.m2/repository/io/github/resilience4j/resilience4j-framework-common/2.0.2/resilience4j-framework-common-2.0.2.jar:/Users/a0p07mo/.m2/repository/io/github/resilience4j/resilience4j-micrometer/2.0.2/resilience4j-micrometer-2.0.2.jar:/Users/a0p07mo/.m2/repository/io/github/resilience4j/resilience4j-retry/2.0.2/resilience4j-retry-2.0.2.jar:/Users/a0p07mo/.m2/repository/io/github/resilience4j/resilience4j-ratelimiter/2.0.2/resilience4j-ratelimiter-2.0.2.jar:/Users/a0p07mo/.m2/repository/io/github/resilience4j/resilience4j-circuitbreaker/2.0.2/resilience4j-circuitbreaker-2.0.2.jar:/Users/a0p07mo/.m2/repository/io/github/resilience4j/resilience4j-core/2.0.2/resilience4j-core-2.0.2.jar:/Users/a0p07mo/.m2/repository/io/github/resilience4j/resilience4j-timelimiter/2.0.2/resilience4j-timelimiter-2.0.2.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-starter-aop/3.0.4/spring-boot-starter-aop-3.0.4.jar:/Users/a0p07mo/.m2/repository/org/springframework/spring-aop/6.0.13/spring-aop-6.0.13.jar:/Users/a0p07mo/.m2/repository/org/aspectj/aspectjweaver/1.9.20/aspectjweaver-1.9.20.jar:/Users/a0p07mo/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.7.1/junit-jupiter-api-5.7.1.jar:/Users/a0p07mo/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/Users/a0p07mo/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/a0p07mo/.m2/repository/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar:/Users/a0p07mo/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.7.1/junit-jupiter-engine-5.7.1.jar:/Users/a0p07mo/.m2/repository/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar:/Users/a0p07mo/.m2/repository/org/junit/vintage/junit-vintage-engine/5.7.0/junit-vintage-engine-5.7.0.jar:/Users/a0p07mo/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/a0p07mo/.m2/repository/org/hamcrest/hamcrest-core/2.2/hamcrest-core-2.2.jar:/Users/a0p07mo/.m2/repository/org/mockito/mockito-core/3.6.28/mockito-core-3.6.28.jar:/Users/a0p07mo/.m2/repository/net/bytebuddy/byte-buddy/1.12.23/byte-buddy-1.12.23.jar:/Users/a0p07mo/.m2/repository/net/bytebuddy/byte-buddy-agent/1.12.23/byte-buddy-agent-1.12.23.jar:/Users/a0p07mo/.m2/repository/org/objenesis/objenesis/3.1/objenesis-3.1.jar:/Users/a0p07mo/.m2/repository/org/mockito/mockito-junit-jupiter/3.6.28/mockito-junit-jupiter-3.6.28.jar:/Users/a0p07mo/.m2/repository/org/springframework/kafka/spring-kafka-test/3.0.12/spring-kafka-test-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/springframework/spring-test/6.0.13/spring-test-6.0.13.jar:/Users/a0p07mo/.m2/repository/org/apache/zookeeper/zookeeper/3.6.3/zookeeper-3.6.3.jar:/Users/a0p07mo/.m2/repository/org/apache/zookeeper/zookeeper-jute/3.6.3/zookeeper-jute-3.6.3.jar:/Users/a0p07mo/.m2/repository/org/apache/yetus/audience-annotations/0.5.0/audience-annotations-0.5.0.jar:/Users/a0p07mo/.m2/repository/io/netty/netty-handler/4.1.100.Final/netty-handler-4.1.100.Final.jar:/Users/a0p07mo/.m2/repository/io/netty/netty-common/4.1.100.Final/netty-common-4.1.100.Final.jar:/Users/a0p07mo/.m2/repository/io/netty/netty-resolver/4.1.100.Final/netty-resolver-4.1.100.Final.jar:/Users/a0p07mo/.m2/repository/io/netty/netty-buffer/4.1.100.Final/netty-buffer-4.1.100.Final.jar:/Users/a0p07mo/.m2/repository/io/netty/netty-transport/4.1.100.Final/netty-transport-4.1.100.Final.jar:/Users/a0p07mo/.m2/repository/io/netty/netty-transport-native-unix-common/4.1.100.Final/netty-transport-native-unix-common-4.1.100.Final.jar:/Users/a0p07mo/.m2/repository/io/netty/netty-codec/4.1.100.Final/netty-codec-4.1.100.Final.jar:/Users/a0p07mo/.m2/repository/io/netty/netty-transport-native-epoll/4.1.100.Final/netty-transport-native-epoll-4.1.100.Final.jar:/Users/a0p07mo/.m2/repository/io/netty/netty-transport-classes-epoll/4.1.100.Final/netty-transport-classes-epoll-4.1.100.Final.jar:/Users/a0p07mo/.m2/repository/org/apache/kafka/kafka-clients/3.3.2/kafka-clients-3.3.2-test.jar:/Users/a0p07mo/.m2/repository/org/apache/kafka/kafka-metadata/3.3.2/kafka-metadata-3.3.2.jar:/Users/a0p07mo/.m2/repository/org/apache/kafka/kafka-server-common/3.3.2/kafka-server-common-3.3.2.jar:/Users/a0p07mo/.m2/repository/org/apache/kafka/kafka-raft/3.3.2/kafka-raft-3.3.2.jar:/Users/a0p07mo/.m2/repository/com/yammer/metrics/metrics-core/2.2.0/metrics-core-2.2.0.jar:/Users/a0p07mo/.m2/repository/org/apache/kafka/kafka-streams-test-utils/3.3.2/kafka-streams-test-utils-3.3.2.jar:/Users/a0p07mo/.m2/repository/org/apache/kafka/kafka_2.13/3.3.2/kafka_2.13-3.3.2.jar:/Users/a0p07mo/.m2/repository/org/scala-lang/scala-library/2.13.8/scala-library-2.13.8.jar:/Users/a0p07mo/.m2/repository/org/apache/kafka/kafka-storage/3.3.2/kafka-storage-3.3.2.jar:/Users/a0p07mo/.m2/repository/org/apache/kafka/kafka-storage-api/3.3.2/kafka-storage-api-3.3.2.jar:/Users/a0p07mo/.m2/repository/net/sourceforge/argparse4j/argparse4j/0.7.0/argparse4j-0.7.0.jar:/Users/a0p07mo/.m2/repository/com/fasterxml/jackson/module/jackson-module-scala_2.13/2.14.3/jackson-module-scala_2.13-2.14.3.jar:/Users/a0p07mo/.m2/repository/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8.jar:/Users/a0p07mo/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-csv/2.14.3/jackson-dataformat-csv-2.14.3.jar:/Users/a0p07mo/.m2/repository/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar:/Users/a0p07mo/.m2/repository/org/bitbucket/b_c/jose4j/0.7.9/jose4j-0.7.9.jar:/Users/a0p07mo/.m2/repository/org/scala-lang/modules/scala-collection-compat_2.13/2.6.0/scala-collection-compat_2.13-2.6.0.jar:/Users/a0p07mo/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.13/1.0.2/scala-java8-compat_2.13-1.0.2.jar:/Users/a0p07mo/.m2/repository/org/scala-lang/scala-reflect/2.13.8/scala-reflect-2.13.8.jar:/Users/a0p07mo/.m2/repository/com/typesafe/scala-logging/scala-logging_2.13/3.9.4/scala-logging_2.13-3.9.4.jar:/Users/a0p07mo/.m2/repository/io/dropwizard/metrics/metrics-core/4.2.21/metrics-core-4.2.21.jar:/Users/a0p07mo/.m2/repository/commons-cli/commons-cli/1.4/commons-cli-1.4.jar:/Users/a0p07mo/.m2/repository/org/apache/kafka/kafka_2.13/3.3.2/kafka_2.13-3.3.2-test.jar:/Users/a0p07mo/.m2/repository/org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.0.12/spring-boot-starter-test-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-test/3.0.12/spring-boot-test-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.0.12/spring-boot-test-autoconfigure-3.0.12.jar:/Users/a0p07mo/.m2/repository/com/jayway/jsonpath/json-path/2.7.0/json-path-2.7.0.jar:/Users/a0p07mo/.m2/repository/net/minidev/json-smart/2.4.11/json-smart-2.4.11.jar:/Users/a0p07mo/.m2/repository/net/minidev/accessors-smart/2.4.11/accessors-smart-2.4.11.jar:/Users/a0p07mo/.m2/repository/org/ow2/asm/asm/9.3/asm-9.3.jar:/Users/a0p07mo/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.1/jakarta.xml.bind-api-4.0.1.jar:/Users/a0p07mo/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.2/jakarta.activation-api-2.1.2.jar:/Users/a0p07mo/.m2/repository/org/assertj/assertj-core/3.23.1/assertj-core-3.23.1.jar:/Users/a0p07mo/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/a0p07mo/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.3/junit-jupiter-5.9.3.jar:/Users/a0p07mo/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.3/junit-jupiter-params-5.9.3.jar:/Users/a0p07mo/.m2/repository/org/skyscreamer/jsonassert/1.5.1/jsonassert-1.5.1.jar:/Users/a0p07mo/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/a0p07mo/.m2/repository/org/springframework/spring-core/6.0.13/spring-core-6.0.13.jar:/Users/a0p07mo/.m2/repository/org/springframework/spring-jcl/6.0.13/spring-jcl-6.0.13.jar:/Users/a0p07mo/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:/Users/a0p07mo/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar:/Users/a0p07mo/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.0.3/springdoc-openapi-starter-webmvc-ui-2.0.3.jar:/Users/a0p07mo/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.0.3/springdoc-openapi-starter-webmvc-api-2.0.3.jar:/Users/a0p07mo/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.0.3/springdoc-openapi-starter-common-2.0.3.jar:/Users/a0p07mo/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.8/swagger-core-jakarta-2.2.8.jar:/Users/a0p07mo/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar:/Users/a0p07mo/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.8/swagger-annotations-jakarta-2.2.8.jar:/Users/a0p07mo/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.8/swagger-models-jakarta-2.2.8.jar:/Users/a0p07mo/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.14.3/jackson-dataformat-yaml-2.14.3.jar:/Users/a0p07mo/.m2/repository/org/webjars/swagger-ui/4.17.1/swagger-ui-4.17.1.jar:/Users/a0p07mo/.m2/repository/org/webjars/webjars-locator-core/0.52/webjars-locator-core-0.52.jar:/Users/a0p07mo/.m2/repository/io/github/classgraph/classgraph/4.8.149/classgraph-4.8.149.jar:/Users/a0p07mo/.m2/repository/io/jsonwebtoken/jjwt/0.9.1/jjwt-0.9.1.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.0.12/spring-boot-starter-validation-3.0.12.jar:/Users/a0p07mo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.15/tomcat-embed-el-10.1.15.jar:/Users/a0p07mo/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/Users/a0p07mo/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/Users/a0p07mo/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/Users/a0p07mo/.m2/repository/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar:/Users/a0p07mo/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.14.3/jackson-databind-2.14.3.jar:/Users/a0p07mo/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.14.3/jackson-core-2.14.3.jar:/Users/a0p07mo/.m2/repository/org/json/json/20210307/json-20210307.jar:/Users/a0p07mo/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.0.12/spring-boot-starter-logging-3.0.12.jar:/Users/a0p07mo/.m2/repository/ch/qos/logback/logback-classic/1.4.11/logback-classic-1.4.11.jar:/Users/a0p07mo/.m2/repository/ch/qos/logback/logback-core/1.4.11/logback-core-1.4.11.jar:/Users/a0p07mo/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.19.0/log4j-to-slf4j-2.19.0.jar:/Users/a0p07mo/.m2/repository/org/apache/logging/log4j/log4j-api/2.19.0/log4j-api-2.19.0.jar:/Users/a0p07mo/.m2/repository/org/slf4j/jul-to-slf4j/2.0.9/jul-to-slf4j-2.0.9.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/Users/a0p07mo"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="spring.embedded.kafka.brokers" value="127.0.0.1:56617"/>
+    <property name="spring.embedded.kafka.brokers" value="127.0.0.1:58598"/>
     <property name="java.version.date" value="2023-04-18"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"/>
     <property name="zookeeper.forceSync" value="no"/>
     <property name="file.separator" value="/"/>
-    <property name="style.color" value="always"/>
     <property name="basedir" value="/Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
@@ -36,7 +35,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="FILE_LOG_CHARSET" value="UTF-8"/>
     <property name="java.awt.headless" value="true"/>
-    <property name="surefire.real.class.path" value="/Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/target/surefire/surefirebooter9524509092230090176.jar"/>
+    <property name="surefire.real.class.path" value="/Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService/target/surefire/surefirebooter6776084794090741542.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.7+8-LTS-224"/>
     <property name="user.name" value="a0p07mo"/>
@@ -48,54 +47,54 @@
     <property name="localRepository" value="/Users/a0p07mo/.m2/repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="/var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/"/>
-    <property name="catalina.home" value="/private/var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/tomcat.8091.1111037352689883869"/>
+    <property name="catalina.home" value="/private/var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/tomcat.8091.13510512766725107511"/>
     <property name="java.version" value="17.0.7"/>
-    <property name="spring.kafka.bootstrap-servers" value="127.0.0.1:56617"/>
+    <property name="spring.kafka.bootstrap-servers" value="127.0.0.1:58598"/>
     <property name="user.dir" value="/Users/a0p07mo/Documents/workspace-spring-tool-suite-4-4.18.0.RELEASE/CcmsService"/>
     <property name="os.arch" value="aarch64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="PID" value="89603"/>
+    <property name="PID" value="20857"/>
     <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
-    <property name="catalina.base" value="/private/var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/tomcat.8091.1111037352689883869"/>
+    <property name="catalina.base" value="/private/var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/tomcat.8091.13510512766725107511"/>
     <property name="native.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/a0p07mo/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="spring.embedded.zookeeper.connect" value="127.0.0.1:56615"/>
+    <property name="spring.embedded.zookeeper.connect" value="127.0.0.1:58596"/>
     <property name="java.vm.version" value="17.0.7+8-LTS-224"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="java.class.version" value="61.0"/>
     <property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} - %msg%n"/>
   </properties>
-  <testcase name="testListenCustomerLogs" classname="com.ccms.service.kafka.CustomerKafkaConsumerTest" time="1.01">
-    <system-out><![CDATA[2025-01-27 01:13:16 - Could not detect default configuration classes for test class [com.ccms.service.kafka.CustomerKafkaConsumerTest]: CustomerKafkaConsumerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2025-01-27 01:13:16 - zookeeper.snapshot.trust.empty : false
-2025-01-27 01:13:16 - Using org.apache.zookeeper.server.watch.WatchManager as watch manager
-2025-01-27 01:13:16 - Using org.apache.zookeeper.server.watch.WatchManager as watch manager
-2025-01-27 01:13:16 - zookeeper.snapshotSizeFactor = 0.33
-2025-01-27 01:13:16 - zookeeper.commitLogCount=500
-2025-01-27 01:13:16 - minSessionTimeout set to 1600
-2025-01-27 01:13:16 - maxSessionTimeout set to 16000
-2025-01-27 01:13:16 - Response cache size is initialized with value 400.
-2025-01-27 01:13:16 - Response cache size is initialized with value 400.
-2025-01-27 01:13:16 - zookeeper.pathStats.slotCapacity = 60
-2025-01-27 01:13:16 - zookeeper.pathStats.slotDuration = 15
-2025-01-27 01:13:16 - zookeeper.pathStats.maxDepth = 6
-2025-01-27 01:13:16 - zookeeper.pathStats.initialDelay = 5
-2025-01-27 01:13:16 - zookeeper.pathStats.delay = 5
-2025-01-27 01:13:16 - zookeeper.pathStats.enabled = false
-2025-01-27 01:13:16 - The max bytes for all large requests are set to 104857600
-2025-01-27 01:13:16 - The large request threshold is set to -1
-2025-01-27 01:13:16 - Created server with tickTime 800 minSessionTimeout 1600 maxSessionTimeout 16000 clientPortListenBacklog -1 datadir /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/kafka-5995366337725839354/version-2 snapdir /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/kafka-14334722739744368873/version-2
-2025-01-27 01:13:16 - maxCnxns is not configured, using default value 0.
-2025-01-27 01:13:16 - Configuring NIO connection handler with 10s sessionless connection timeout, 2 selector thread(s), 20 worker threads, and 64 kB direct buffers.
-2025-01-27 01:13:16 - binding to port /127.0.0.1:0
-2025-01-27 01:13:16 - Snapshotting: 0x0 to /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/kafka-14334722739744368873/version-2/snapshot.0
-2025-01-27 01:13:16 - Snapshot loaded in 8 ms, highest zxid is 0x0, digest is 1371985504
-2025-01-27 01:13:16 - Snapshotting: 0x0 to /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/kafka-14334722739744368873/version-2/snapshot.0
-2025-01-27 01:13:16 - Snapshot taken in 6 ms
-2025-01-27 01:13:16 - PrepRequestProcessor (sid:0) started, reconfigEnabled=false
-2025-01-27 01:13:16 - KafkaConfig values: 
+  <testcase name="testListenCustomerLogs" classname="com.ccms.service.kafka.CustomerKafkaConsumerTest" time="1.008">
+    <system-out><![CDATA[2025-01-27 01:24:07 - Could not detect default configuration classes for test class [com.ccms.service.kafka.CustomerKafkaConsumerTest]: CustomerKafkaConsumerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-01-27 01:24:07 - zookeeper.snapshot.trust.empty : false
+2025-01-27 01:24:07 - Using org.apache.zookeeper.server.watch.WatchManager as watch manager
+2025-01-27 01:24:07 - Using org.apache.zookeeper.server.watch.WatchManager as watch manager
+2025-01-27 01:24:07 - zookeeper.snapshotSizeFactor = 0.33
+2025-01-27 01:24:07 - zookeeper.commitLogCount=500
+2025-01-27 01:24:07 - minSessionTimeout set to 1600
+2025-01-27 01:24:07 - maxSessionTimeout set to 16000
+2025-01-27 01:24:07 - Response cache size is initialized with value 400.
+2025-01-27 01:24:07 - Response cache size is initialized with value 400.
+2025-01-27 01:24:07 - zookeeper.pathStats.slotCapacity = 60
+2025-01-27 01:24:07 - zookeeper.pathStats.slotDuration = 15
+2025-01-27 01:24:07 - zookeeper.pathStats.maxDepth = 6
+2025-01-27 01:24:07 - zookeeper.pathStats.initialDelay = 5
+2025-01-27 01:24:07 - zookeeper.pathStats.delay = 5
+2025-01-27 01:24:07 - zookeeper.pathStats.enabled = false
+2025-01-27 01:24:07 - The max bytes for all large requests are set to 104857600
+2025-01-27 01:24:07 - The large request threshold is set to -1
+2025-01-27 01:24:07 - Created server with tickTime 800 minSessionTimeout 1600 maxSessionTimeout 16000 clientPortListenBacklog -1 datadir /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/kafka-15737760730055467154/version-2 snapdir /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/kafka-6545613252912916760/version-2
+2025-01-27 01:24:07 - maxCnxns is not configured, using default value 0.
+2025-01-27 01:24:07 - Configuring NIO connection handler with 10s sessionless connection timeout, 2 selector thread(s), 20 worker threads, and 64 kB direct buffers.
+2025-01-27 01:24:07 - binding to port /127.0.0.1:0
+2025-01-27 01:24:07 - Snapshotting: 0x0 to /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/kafka-6545613252912916760/version-2/snapshot.0
+2025-01-27 01:24:07 - Snapshot loaded in 2 ms, highest zxid is 0x0, digest is 1371985504
+2025-01-27 01:24:07 - Snapshotting: 0x0 to /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/kafka-6545613252912916760/version-2/snapshot.0
+2025-01-27 01:24:07 - Snapshot taken in 2 ms
+2025-01-27 01:24:07 - PrepRequestProcessor (sid:0) started, reconfigEnabled=false
+2025-01-27 01:24:07 - KafkaConfig values: 
 	advertised.listeners = null
 	alter.config.policy.class.name = null
 	alter.log.dirs.replication.quota.window.num = 11
@@ -166,7 +165,7 @@
 	log.cleaner.min.compaction.lag.ms = 0
 	log.cleaner.threads = 1
 	log.cleanup.policy = [delete]
-	log.dir = /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.e61578ea-12cb-48ae-b2d6-58bde4c24f9f6769071226488191078
+	log.dir = /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.65fa42c3-8fd3-488b-8a38-cff97522ffca1877185292076293671
 	log.dirs = null
 	log.flush.interval.messages = 9223372036854775807
 	log.flush.interval.ms = null
@@ -343,7 +342,7 @@
 	transactional.id.expiration.ms = 604800000
 	unclean.leader.election.enable = false
 	zookeeper.clientCnxnSocket = null
-	zookeeper.connect = 127.0.0.1:56615
+	zookeeper.connect = 127.0.0.1:58596
 	zookeeper.connection.timeout.ms = 10000
 	zookeeper.max.in.flight.requests = 10
 	zookeeper.session.timeout.ms = 18000
@@ -362,21 +361,21 @@
 	zookeeper.ssl.truststore.password = null
 	zookeeper.ssl.truststore.type = null
 
-2025-01-27 01:13:16 - starting
-2025-01-27 01:13:16 - Connecting to zookeeper on 127.0.0.1:56615
-2025-01-27 01:13:16 - [ZooKeeperClient Kafka server] Initializing a new session to 127.0.0.1:56615.
-2025-01-27 01:13:16 - Initiating client connection, connectString=127.0.0.1:56615 sessionTimeout=18000 watcher=kafka.zookeeper.ZooKeeperClient$ZooKeeperClientWatcher$@41ca8315
-2025-01-27 01:13:16 - jute.maxbuffer value is 4194304 Bytes
-2025-01-27 01:13:16 - zookeeper.request.timeout value is 0. feature enabled=false
-2025-01-27 01:13:16 - [ZooKeeperClient Kafka server] Waiting until connected.
-2025-01-27 01:13:16 - Opening socket connection to server /127.0.0.1:56615.
-2025-01-27 01:13:16 - Socket connection established, initiating session, client: /127.0.0.1:56616, server: /127.0.0.1:56615
-2025-01-27 01:13:16 - Creating new log file: log.1
-2025-01-27 01:13:16 - Session establishment complete on server /127.0.0.1:56615, session id = 0x100194efac30000, negotiated timeout = 16000
-2025-01-27 01:13:16 - [ZooKeeperClient Kafka server] Connected.
-2025-01-27 01:13:16 - Cluster ID = nGi9Kc_rSnOf4zi9i_16VQ
-2025-01-27 01:13:16 - No meta.properties file under dir /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.e61578ea-12cb-48ae-b2d6-58bde4c24f9f6769071226488191078/meta.properties
-2025-01-27 01:13:16 - KafkaConfig values: 
+2025-01-27 01:24:07 - starting
+2025-01-27 01:24:07 - Connecting to zookeeper on 127.0.0.1:58596
+2025-01-27 01:24:07 - [ZooKeeperClient Kafka server] Initializing a new session to 127.0.0.1:58596.
+2025-01-27 01:24:07 - Initiating client connection, connectString=127.0.0.1:58596 sessionTimeout=18000 watcher=kafka.zookeeper.ZooKeeperClient$ZooKeeperClientWatcher$@5ad9d3c1
+2025-01-27 01:24:07 - jute.maxbuffer value is 4194304 Bytes
+2025-01-27 01:24:07 - zookeeper.request.timeout value is 0. feature enabled=false
+2025-01-27 01:24:07 - Opening socket connection to server /127.0.0.1:58596.
+2025-01-27 01:24:07 - [ZooKeeperClient Kafka server] Waiting until connected.
+2025-01-27 01:24:07 - Socket connection established, initiating session, client: /127.0.0.1:58597, server: /127.0.0.1:58596
+2025-01-27 01:24:07 - Creating new log file: log.1
+2025-01-27 01:24:07 - Session establishment complete on server /127.0.0.1:58596, session id = 0x1001958e8530000, negotiated timeout = 16000
+2025-01-27 01:24:07 - [ZooKeeperClient Kafka server] Connected.
+2025-01-27 01:24:07 - Cluster ID = npZonwvhQKS0CG_5pzjN3w
+2025-01-27 01:24:07 - No meta.properties file under dir /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.65fa42c3-8fd3-488b-8a38-cff97522ffca1877185292076293671/meta.properties
+2025-01-27 01:24:07 - KafkaConfig values: 
 	advertised.listeners = null
 	alter.config.policy.class.name = null
 	alter.log.dirs.replication.quota.window.num = 11
@@ -447,7 +446,7 @@
 	log.cleaner.min.compaction.lag.ms = 0
 	log.cleaner.threads = 1
 	log.cleanup.policy = [delete]
-	log.dir = /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.e61578ea-12cb-48ae-b2d6-58bde4c24f9f6769071226488191078
+	log.dir = /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.65fa42c3-8fd3-488b-8a38-cff97522ffca1877185292076293671
 	log.dirs = null
 	log.flush.interval.messages = 9223372036854775807
 	log.flush.interval.ms = null
@@ -624,7 +623,7 @@
 	transactional.id.expiration.ms = 604800000
 	unclean.leader.election.enable = false
 	zookeeper.clientCnxnSocket = null
-	zookeeper.connect = 127.0.0.1:56615
+	zookeeper.connect = 127.0.0.1:58596
 	zookeeper.connection.timeout.ms = 10000
 	zookeeper.max.in.flight.requests = 10
 	zookeeper.session.timeout.ms = 18000
@@ -643,59 +642,64 @@
 	zookeeper.ssl.truststore.password = null
 	zookeeper.ssl.truststore.type = null
 
-2025-01-27 01:13:16 - [ThrottledChannelReaper-Fetch]: Starting
-2025-01-27 01:13:16 - [ThrottledChannelReaper-Produce]: Starting
-2025-01-27 01:13:16 - [ThrottledChannelReaper-Request]: Starting
-2025-01-27 01:13:16 - [ThrottledChannelReaper-ControllerMutation]: Starting
-2025-01-27 01:13:16 - Loading logs from log dirs ArraySeq(/var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.e61578ea-12cb-48ae-b2d6-58bde4c24f9f6769071226488191078)
-2025-01-27 01:13:16 - Attempting recovery for all logs in /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.e61578ea-12cb-48ae-b2d6-58bde4c24f9f6769071226488191078 since no clean shutdown file was found
-2025-01-27 01:13:16 - Loaded 0 logs in 2ms.
-2025-01-27 01:13:16 - Starting log cleanup with a period of 300000 ms.
-2025-01-27 01:13:16 - Starting log flusher with a default period of 9223372036854775807 ms.
-2025-01-27 01:13:16 - Starting the log cleaner
-2025-01-27 01:13:16 - [kafka-log-cleaner-thread-0]: Starting
-2025-01-27 01:13:16 - [feature-zk-node-event-process-thread]: Starting
-2025-01-27 01:13:16 - Feature ZK node at path: /feature does not exist
-2025-01-27 01:13:16 - [BrokerToControllerChannelManager broker=0 name=forwarding]: Starting
-2025-01-27 01:13:16 - Updated connection-accept-rate max connection creation rate to 2147483647
-2025-01-27 01:13:16 - Awaiting socket connections on localhost:56617.
-2025-01-27 01:13:16 - [SocketServer listenerType=ZK_BROKER, nodeId=0] Created data-plane acceptor and processors for endpoint : ListenerName(PLAINTEXT)
-2025-01-27 01:13:16 - [BrokerToControllerChannelManager broker=0 name=alterPartition]: Starting
-2025-01-27 01:13:16 - [ExpirationReaper-0-Produce]: Starting
-2025-01-27 01:13:16 - [ExpirationReaper-0-Fetch]: Starting
-2025-01-27 01:13:16 - [ExpirationReaper-0-DeleteRecords]: Starting
-2025-01-27 01:13:16 - [ExpirationReaper-0-ElectLeader]: Starting
-2025-01-27 01:13:16 - [LogDirFailureHandler]: Starting
-2025-01-27 01:13:16 - Creating /brokers/ids/0 (is it secure? false)
-2025-01-27 01:13:16 - Stat of the created znode at /brokers/ids/0 is: 25,25,1737920596722,1737920596722,1,0,0,72085421043154944,204,0,25
+2025-01-27 01:24:07 - [ThrottledChannelReaper-Fetch]: Starting
+2025-01-27 01:24:07 - [ThrottledChannelReaper-Produce]: Starting
+2025-01-27 01:24:07 - [ThrottledChannelReaper-Request]: Starting
+2025-01-27 01:24:07 - [ThrottledChannelReaper-ControllerMutation]: Starting
+2025-01-27 01:24:07 - Loading logs from log dirs ArraySeq(/var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.65fa42c3-8fd3-488b-8a38-cff97522ffca1877185292076293671)
+2025-01-27 01:24:07 - Attempting recovery for all logs in /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.65fa42c3-8fd3-488b-8a38-cff97522ffca1877185292076293671 since no clean shutdown file was found
+2025-01-27 01:24:07 - Loaded 0 logs in 2ms.
+2025-01-27 01:24:07 - Starting log cleanup with a period of 300000 ms.
+2025-01-27 01:24:07 - Starting log flusher with a default period of 9223372036854775807 ms.
+2025-01-27 01:24:07 - Starting the log cleaner
+2025-01-27 01:24:07 - [kafka-log-cleaner-thread-0]: Starting
+2025-01-27 01:24:07 - [feature-zk-node-event-process-thread]: Starting
+2025-01-27 01:24:07 - Feature ZK node at path: /feature does not exist
+2025-01-27 01:24:07 - [BrokerToControllerChannelManager broker=0 name=forwarding]: Starting
+2025-01-27 01:24:07 - Updated connection-accept-rate max connection creation rate to 2147483647
+2025-01-27 01:24:07 - Awaiting socket connections on localhost:58598.
+2025-01-27 01:24:07 - [SocketServer listenerType=ZK_BROKER, nodeId=0] Created data-plane acceptor and processors for endpoint : ListenerName(PLAINTEXT)
+2025-01-27 01:24:07 - [BrokerToControllerChannelManager broker=0 name=alterPartition]: Starting
+2025-01-27 01:24:07 - [ExpirationReaper-0-Produce]: Starting
+2025-01-27 01:24:07 - [ExpirationReaper-0-Fetch]: Starting
+2025-01-27 01:24:07 - [ExpirationReaper-0-DeleteRecords]: Starting
+2025-01-27 01:24:07 - [ExpirationReaper-0-ElectLeader]: Starting
+2025-01-27 01:24:07 - [LogDirFailureHandler]: Starting
+2025-01-27 01:24:07 - Creating /brokers/ids/0 (is it secure? false)
+2025-01-27 01:24:07 - Stat of the created znode at /brokers/ids/0 is: 25,25,1737921247392,1737921247392,1,0,0,72085463683497984,204,0,25
 
-2025-01-27 01:13:16 - Registered broker 0 at path /brokers/ids/0 with addresses: PLAINTEXT://localhost:56617, czxid (broker epoch): 25
-2025-01-27 01:13:16 - [ControllerEventThread controllerId=0] Starting
-2025-01-27 01:13:16 - [ExpirationReaper-0-topic]: Starting
-2025-01-27 01:13:16 - [ExpirationReaper-0-Heartbeat]: Starting
-2025-01-27 01:13:16 - [ExpirationReaper-0-Rebalance]: Starting
-2025-01-27 01:13:16 - [GroupCoordinator 0]: Starting up.
-2025-01-27 01:13:16 - Successfully created /controller_epoch with initial epoch 0
-2025-01-27 01:13:16 - [GroupCoordinator 0]: Startup complete.
-2025-01-27 01:13:16 - [Controller id=0] 0 successfully elected as the controller. Epoch incremented to 1 and epoch zk version is now 1
-2025-01-27 01:13:16 - [Controller id=0] Creating FeatureZNode at path: /feature with contents: FeatureZNode(2,Enabled,Map())
-2025-01-27 01:13:16 - [TransactionCoordinator id=0] Starting up.
-2025-01-27 01:13:16 - Feature ZK node created at path: /feature
-2025-01-27 01:13:16 - [TransactionCoordinator id=0] Startup complete.
-2025-01-27 01:13:16 - [Transaction Marker Channel Manager 0]: Starting
-2025-01-27 01:13:16 - [MetadataCache brokerId=0] Updated cache from existing <empty> to latest FinalizedFeaturesAndEpoch(features=Map(), epoch=0).
-2025-01-27 01:13:16 - [Controller id=0] Registering handlers
-2025-01-27 01:13:16 - [ExpirationReaper-0-AlterAcls]: Starting
-2025-01-27 01:13:16 - [Controller id=0] Deleting log dir event notifications
-2025-01-27 01:13:16 - [Controller id=0] Deleting isr change notifications
-2025-01-27 01:13:16 - [/config/changes-event-process-thread]: Starting
-2025-01-27 01:13:16 - [Controller id=0] Initializing controller context
-2025-01-27 01:13:16 - [Controller id=0] Initialized broker epochs cache: HashMap(0 -> 25)
-2025-01-27 01:13:16 - [SocketServer listenerType=ZK_BROKER, nodeId=0] Enabling request processing.
-2025-01-27 01:13:16 - Kafka version: 3.3.2
-2025-01-27 01:13:16 - Kafka commitId: b66af662e61082cb
-2025-01-27 01:13:16 - Kafka startTimeMs: 1737920596743
-2025-01-27 01:13:16 - Error registering AppInfo mbean
+2025-01-27 01:24:07 - Registered broker 0 at path /brokers/ids/0 with addresses: PLAINTEXT://localhost:58598, czxid (broker epoch): 25
+2025-01-27 01:24:07 - [ControllerEventThread controllerId=0] Starting
+2025-01-27 01:24:07 - [ExpirationReaper-0-topic]: Starting
+2025-01-27 01:24:07 - [ExpirationReaper-0-Heartbeat]: Starting
+2025-01-27 01:24:07 - [ExpirationReaper-0-Rebalance]: Starting
+2025-01-27 01:24:07 - [GroupCoordinator 0]: Starting up.
+2025-01-27 01:24:07 - Successfully created /controller_epoch with initial epoch 0
+2025-01-27 01:24:07 - [GroupCoordinator 0]: Startup complete.
+2025-01-27 01:24:07 - [Controller id=0] 0 successfully elected as the controller. Epoch incremented to 1 and epoch zk version is now 1
+2025-01-27 01:24:07 - [Controller id=0] Creating FeatureZNode at path: /feature with contents: FeatureZNode(2,Enabled,Map())
+2025-01-27 01:24:07 - Feature ZK node created at path: /feature
+2025-01-27 01:24:07 - [TransactionCoordinator id=0] Starting up.
+2025-01-27 01:24:07 - [MetadataCache brokerId=0] Updated cache from existing <empty> to latest FinalizedFeaturesAndEpoch(features=Map(), epoch=0).
+2025-01-27 01:24:07 - [Controller id=0] Registering handlers
+2025-01-27 01:24:07 - [TransactionCoordinator id=0] Startup complete.
+2025-01-27 01:24:07 - [Transaction Marker Channel Manager 0]: Starting
+2025-01-27 01:24:07 - [ExpirationReaper-0-AlterAcls]: Starting
+2025-01-27 01:24:07 - [Controller id=0] Deleting log dir event notifications
+2025-01-27 01:24:07 - [Controller id=0] Deleting isr change notifications
+2025-01-27 01:24:07 - [Controller id=0] Initializing controller context
+2025-01-27 01:24:07 - [/config/changes-event-process-thread]: Starting
+2025-01-27 01:24:07 - [Controller id=0] Initialized broker epochs cache: HashMap(0 -> 25)
+2025-01-27 01:24:07 - [SocketServer listenerType=ZK_BROKER, nodeId=0] Enabling request processing.
+2025-01-27 01:24:07 - Kafka version: 3.3.2
+2025-01-27 01:24:07 - Kafka commitId: b66af662e61082cb
+2025-01-27 01:24:07 - Kafka startTimeMs: 1737921247413
+2025-01-27 01:24:07 - [Controller id=0] Currently active brokers in the cluster: Set(0)
+2025-01-27 01:24:07 - [Controller id=0] Currently shutting brokers in the cluster: HashSet()
+2025-01-27 01:24:07 - [Controller id=0] Current list of topics in the cluster: HashSet()
+2025-01-27 01:24:07 - [Controller id=0] Fetching topic deletions in progress
+2025-01-27 01:24:07 - [RequestSendThread controllerId=0] Starting
+2025-01-27 01:24:07 - Error registering AppInfo mbean
 javax.management.InstanceAlreadyExistsException: kafka.server:type=app-info,id=0
 	at java.management/com.sun.jmx.mbeanserver.Repository.addMBean(Repository.java:436) ~[na:na]
 	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.registerWithRepository(DefaultMBeanServerInterceptor.java:1865) ~[na:na]
@@ -792,9 +796,21 @@ javax.management.InstanceAlreadyExistsException: kafka.server:type=app-info,id=0
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.0.0-M5.jar:3.0.0-M5]
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:562) ~[surefire-booter-3.0.0-M5.jar:3.0.0-M5]
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548) ~[surefire-booter-3.0.0-M5.jar:3.0.0-M5]
-2025-01-27 01:13:16 - [KafkaServer id=0] started
-2025-01-27 01:13:16 - AdminClientConfig values: 
-	bootstrap.servers = [127.0.0.1:56617]
+2025-01-27 01:24:07 - [KafkaServer id=0] started
+2025-01-27 01:24:07 - [Controller id=0] List of topics to be deleted: 
+2025-01-27 01:24:07 - [Controller id=0] List of topics ineligible for deletion: 
+2025-01-27 01:24:07 - [Controller id=0] Initializing topic deletion manager
+2025-01-27 01:24:07 - [Topic Deletion Manager 0] Initializing manager with initial deletions: Set(), initial ineligible deletions: HashSet()
+2025-01-27 01:24:07 - [Controller id=0] Sending update metadata request
+2025-01-27 01:24:07 - [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers HashSet(0) for 0 partitions
+2025-01-27 01:24:07 - [ReplicaStateMachine controllerId=0] Initializing replica state
+2025-01-27 01:24:07 - [ReplicaStateMachine controllerId=0] Triggering online replica state changes
+2025-01-27 01:24:07 - [ReplicaStateMachine controllerId=0] Triggering offline replica state changes
+2025-01-27 01:24:07 - [PartitionStateMachine controllerId=0] Initializing partition state
+2025-01-27 01:24:07 - [PartitionStateMachine controllerId=0] Triggering online partition state changes
+2025-01-27 01:24:07 - [Controller id=0] Ready to serve as the new controller with epoch 1
+2025-01-27 01:24:07 - AdminClientConfig values: 
+	bootstrap.servers = [127.0.0.1:58598]
 	client.dns.lookup = use_all_dns_ips
 	client.id = 
 	connections.max.idle.ms = 300000
@@ -863,58 +879,41 @@ javax.management.InstanceAlreadyExistsException: kafka.server:type=app-info,id=0
 	ssl.truststore.password = null
 	ssl.truststore.type = JKS
 
-2025-01-27 01:13:16 - [Controller id=0] Currently active brokers in the cluster: Set(0)
-2025-01-27 01:13:16 - [Controller id=0] Currently shutting brokers in the cluster: HashSet()
-2025-01-27 01:13:16 - [Controller id=0] Current list of topics in the cluster: HashSet()
-2025-01-27 01:13:16 - [RequestSendThread controllerId=0] Starting
-2025-01-27 01:13:16 - [Controller id=0] Fetching topic deletions in progress
-2025-01-27 01:13:16 - [Controller id=0] List of topics to be deleted: 
-2025-01-27 01:13:16 - [Controller id=0] List of topics ineligible for deletion: 
-2025-01-27 01:13:16 - [Controller id=0] Initializing topic deletion manager
-2025-01-27 01:13:16 - [Topic Deletion Manager 0] Initializing manager with initial deletions: Set(), initial ineligible deletions: HashSet()
-2025-01-27 01:13:16 - [Controller id=0] Sending update metadata request
-2025-01-27 01:13:16 - [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers HashSet(0) for 0 partitions
-2025-01-27 01:13:16 - [ReplicaStateMachine controllerId=0] Initializing replica state
-2025-01-27 01:13:16 - [ReplicaStateMachine controllerId=0] Triggering online replica state changes
-2025-01-27 01:13:16 - [ReplicaStateMachine controllerId=0] Triggering offline replica state changes
-2025-01-27 01:13:16 - Kafka version: 3.3.2
-2025-01-27 01:13:16 - [PartitionStateMachine controllerId=0] Initializing partition state
-2025-01-27 01:13:16 - [PartitionStateMachine controllerId=0] Triggering online partition state changes
-2025-01-27 01:13:16 - Kafka commitId: b66af662e61082cb
-2025-01-27 01:13:16 - Kafka startTimeMs: 1737920596746
-2025-01-27 01:13:16 - [Controller id=0] Ready to serve as the new controller with epoch 1
-2025-01-27 01:13:16 - [RequestSendThread controllerId=0] Controller 0 connected to localhost:56617 (id: 0 rack: null) for sending state change requests
-2025-01-27 01:13:16 - [Controller id=0] Partitions undergoing preferred replica election: 
-2025-01-27 01:13:16 - [Controller id=0] Partitions that completed preferred replica election: 
-2025-01-27 01:13:16 - [Controller id=0] Skipping preferred replica election for partitions due to topic deletion: 
-2025-01-27 01:13:16 - [Controller id=0] Resuming preferred replica election for partitions: 
-2025-01-27 01:13:16 - [Controller id=0] Starting replica leader election (PREFERRED) for partitions  triggered by ZkTriggered
-2025-01-27 01:13:16 - [Controller id=0] Starting the controller scheduler
-2025-01-27 01:13:16 - Creating topic customer-log-topic with configuration {} and initial partition assignment HashMap(0 -> ArrayBuffer(0))
-2025-01-27 01:13:16 - [Controller id=0] New topics: [Set(customer-log-topic)], deleted topics: [HashSet()], new partition replica assignment [Set(TopicIdReplicaAssignment(customer-log-topic,Some(HTa7J2yKTvKIo5IQzv8dcw),Map(customer-log-topic-0 -> ReplicaAssignment(replicas=0, addingReplicas=, removingReplicas=))))]
-2025-01-27 01:13:16 - [Controller id=0] New partition creation callback for customer-log-topic-0
-2025-01-27 01:13:16 - [Controller id=0 epoch=1] Changed partition customer-log-topic-0 state from NonExistentPartition to NewPartition with assigned replicas 0
-2025-01-27 01:13:16 - [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers HashSet() for 0 partitions
-2025-01-27 01:13:16 - [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers HashSet() for 0 partitions
-2025-01-27 01:13:16 - [Controller id=0 epoch=1] Changed partition customer-log-topic-0 from NewPartition to OnlinePartition with state LeaderAndIsr(leader=0, leaderEpoch=0, isr=List(0), leaderRecoveryState=RECOVERED, partitionEpoch=0)
-2025-01-27 01:13:16 - [Controller id=0 epoch=1] Sending LeaderAndIsr request to broker 0 with 1 become-leader and 0 become-follower partitions
-2025-01-27 01:13:16 - [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers HashSet(0) for 1 partitions
-2025-01-27 01:13:16 - [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers HashSet() for 0 partitions
-2025-01-27 01:13:16 - [Broker id=0] Handling LeaderAndIsr request correlationId 1 from controller 0 for 1 partitions
-2025-01-27 01:13:16 - [ReplicaFetcherManager on broker 0] Removed fetcher for partitions Set(customer-log-topic-0)
-2025-01-27 01:13:16 - [Broker id=0] Stopped fetchers as part of LeaderAndIsr request correlationId 1 from controller 0 epoch 1 as part of the become-leader transition for 1 partitions
-2025-01-27 01:13:16 - [LogLoader partition=customer-log-topic-0, dir=/var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.e61578ea-12cb-48ae-b2d6-58bde4c24f9f6769071226488191078] Loading producer state till offset 0 with message format version 2
-2025-01-27 01:13:16 - Created log for partition customer-log-topic-0 in /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.e61578ea-12cb-48ae-b2d6-58bde4c24f9f6769071226488191078/customer-log-topic-0 with properties {}
-2025-01-27 01:13:16 - [Partition customer-log-topic-0 broker=0] No checkpointed highwatermark is found for partition customer-log-topic-0
-2025-01-27 01:13:16 - [Partition customer-log-topic-0 broker=0] Log loaded for partition customer-log-topic-0 with initial high watermark 0
-2025-01-27 01:13:16 - [Broker id=0] Leader customer-log-topic-0 with topic id Some(HTa7J2yKTvKIo5IQzv8dcw) starts at leader epoch 0 from offset 0 with partition epoch 0, high watermark 0, ISR [0], adding replicas [] and removing replicas []. Previous leader epoch was -1.
-2025-01-27 01:13:16 - [Broker id=0] Finished LeaderAndIsr request in 22ms correlationId 1 from controller 0 for 1 partitions
-2025-01-27 01:13:16 - [Broker id=0] Add 1 partitions and deleted 0 partitions from metadata cache in response to UpdateMetadata request sent by controller 0 epoch 1 with correlation id 2
-2025-01-27 01:13:16 - App info kafka.admin.client for adminclient-5 unregistered
-2025-01-27 01:13:16 - Metrics scheduler closed
-2025-01-27 01:13:16 - Closing reporter org.apache.kafka.common.metrics.JmxReporter
-2025-01-27 01:13:16 - Metrics reporters closed
-2025-01-27 01:13:16 - 
+2025-01-27 01:24:07 - [RequestSendThread controllerId=0] Controller 0 connected to localhost:58598 (id: 0 rack: null) for sending state change requests
+2025-01-27 01:24:07 - [Controller id=0] Partitions undergoing preferred replica election: 
+2025-01-27 01:24:07 - [Controller id=0] Partitions that completed preferred replica election: 
+2025-01-27 01:24:07 - [Controller id=0] Skipping preferred replica election for partitions due to topic deletion: 
+2025-01-27 01:24:07 - [Controller id=0] Resuming preferred replica election for partitions: 
+2025-01-27 01:24:07 - [Controller id=0] Starting replica leader election (PREFERRED) for partitions  triggered by ZkTriggered
+2025-01-27 01:24:07 - [Controller id=0] Starting the controller scheduler
+2025-01-27 01:24:07 - Kafka version: 3.3.2
+2025-01-27 01:24:07 - Kafka commitId: b66af662e61082cb
+2025-01-27 01:24:07 - Kafka startTimeMs: 1737921247418
+2025-01-27 01:24:07 - Creating topic customer-log-topic with configuration {} and initial partition assignment HashMap(0 -> ArrayBuffer(0))
+2025-01-27 01:24:07 - [Controller id=0] New topics: [Set(customer-log-topic)], deleted topics: [HashSet()], new partition replica assignment [Set(TopicIdReplicaAssignment(customer-log-topic,Some(XxQKbsTKSACFZGQaoQz_oQ),Map(customer-log-topic-0 -> ReplicaAssignment(replicas=0, addingReplicas=, removingReplicas=))))]
+2025-01-27 01:24:07 - [Controller id=0] New partition creation callback for customer-log-topic-0
+2025-01-27 01:24:07 - [Controller id=0 epoch=1] Changed partition customer-log-topic-0 state from NonExistentPartition to NewPartition with assigned replicas 0
+2025-01-27 01:24:07 - [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers HashSet() for 0 partitions
+2025-01-27 01:24:07 - [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers HashSet() for 0 partitions
+2025-01-27 01:24:07 - [Controller id=0 epoch=1] Changed partition customer-log-topic-0 from NewPartition to OnlinePartition with state LeaderAndIsr(leader=0, leaderEpoch=0, isr=List(0), leaderRecoveryState=RECOVERED, partitionEpoch=0)
+2025-01-27 01:24:07 - [Controller id=0 epoch=1] Sending LeaderAndIsr request to broker 0 with 1 become-leader and 0 become-follower partitions
+2025-01-27 01:24:07 - [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers HashSet(0) for 1 partitions
+2025-01-27 01:24:07 - [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers HashSet() for 0 partitions
+2025-01-27 01:24:07 - [Broker id=0] Handling LeaderAndIsr request correlationId 1 from controller 0 for 1 partitions
+2025-01-27 01:24:07 - [ReplicaFetcherManager on broker 0] Removed fetcher for partitions Set(customer-log-topic-0)
+2025-01-27 01:24:07 - [Broker id=0] Stopped fetchers as part of LeaderAndIsr request correlationId 1 from controller 0 epoch 1 as part of the become-leader transition for 1 partitions
+2025-01-27 01:24:07 - [LogLoader partition=customer-log-topic-0, dir=/var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.65fa42c3-8fd3-488b-8a38-cff97522ffca1877185292076293671] Loading producer state till offset 0 with message format version 2
+2025-01-27 01:24:07 - Created log for partition customer-log-topic-0 in /var/folders/gr/dw9st56s3gj30gltjs1m4f5m0000gq/T/spring.kafka.65fa42c3-8fd3-488b-8a38-cff97522ffca1877185292076293671/customer-log-topic-0 with properties {}
+2025-01-27 01:24:07 - [Partition customer-log-topic-0 broker=0] No checkpointed highwatermark is found for partition customer-log-topic-0
+2025-01-27 01:24:07 - [Partition customer-log-topic-0 broker=0] Log loaded for partition customer-log-topic-0 with initial high watermark 0
+2025-01-27 01:24:07 - [Broker id=0] Leader customer-log-topic-0 with topic id Some(XxQKbsTKSACFZGQaoQz_oQ) starts at leader epoch 0 from offset 0 with partition epoch 0, high watermark 0, ISR [0], adding replicas [] and removing replicas []. Previous leader epoch was -1.
+2025-01-27 01:24:07 - [Broker id=0] Finished LeaderAndIsr request in 26ms correlationId 1 from controller 0 for 1 partitions
+2025-01-27 01:24:07 - [Broker id=0] Add 1 partitions and deleted 0 partitions from metadata cache in response to UpdateMetadata request sent by controller 0 epoch 1 with correlation id 2
+2025-01-27 01:24:07 - App info kafka.admin.client for adminclient-5 unregistered
+2025-01-27 01:24:07 - Metrics scheduler closed
+2025-01-27 01:24:07 - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2025-01-27 01:24:07 - Metrics reporters closed
+2025-01-27 01:24:07 - 
 
 Found multiple occurrences of org.json.JSONObject on the class path:
 
@@ -923,9 +922,9 @@ Found multiple occurrences of org.json.JSONObject on the class path:
 
 You may wish to exclude one of them to ensure predictable runtime behavior
 
-2025-01-27 01:13:16 - Received customer logs: Customer action: Login successful
-2025-01-27 01:13:16 - [BrokerToControllerChannelManager broker=0 name=forwarding]: Recorded new controller, from now on will use node localhost:56617 (id: 0 rack: null)
-2025-01-27 01:13:16 - [BrokerToControllerChannelManager broker=0 name=alterPartition]: Recorded new controller, from now on will use node localhost:56617 (id: 0 rack: null)
+2025-01-27 01:24:07 - Received customer logs: Customer action: Login successful
+2025-01-27 01:24:07 - [BrokerToControllerChannelManager broker=0 name=forwarding]: Recorded new controller, from now on will use node localhost:58598 (id: 0 rack: null)
+2025-01-27 01:24:07 - [BrokerToControllerChannelManager broker=0 name=alterPartition]: Recorded new controller, from now on will use node localhost:58598 (id: 0 rack: null)
 ]]></system-out>
   </testcase>
 </testsuite>
